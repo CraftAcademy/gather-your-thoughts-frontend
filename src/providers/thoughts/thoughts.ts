@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Response } from '@angular/http';
 import { Angular2TokenService } from 'angular2-token';
 
 

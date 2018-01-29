@@ -44,7 +44,7 @@ export class ThoughtModalPage {
   createThought() {
     this.thoughtsProvider.saveThought(this.thought)
     .subscribe(data => this.thoughtCreate("Thought was successfully created."),
-              data => console.log(data._body))
+              data => this.thoughtCreate(data.json().error[0]))
   }
 
 }
