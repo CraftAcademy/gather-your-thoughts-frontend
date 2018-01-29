@@ -17,16 +17,15 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <form (ngSubmit)="createThought()">
     <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input></ion-input>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="thought.title" name="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Body</ion-label>
-      <ion-input></ion-input>
+      <ion-label>Body</ion-label>
+      <ion-textarea [(ngModel)]="thought.body" name="body"></ion-textarea>
     </ion-item>
-  </ion-list>
-
-  <button ion-button>Create Thought</button>
+    <button ion-button type="submit" block>Create Thought</button>
+  </form>
 </ion-content>

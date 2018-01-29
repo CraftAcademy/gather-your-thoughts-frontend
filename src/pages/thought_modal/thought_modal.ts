@@ -14,7 +14,7 @@ import { IonicPage, ViewController } from 'ionic-angular';
   templateUrl: 'thought_modal.html',
 })
 export class ThoughtModalPage {
-
+  thought = {}
   constructor(private view: ViewController) {
   }
 
@@ -23,6 +23,10 @@ export class ThoughtModalPage {
   }
 
   ionViewDidLoad() {
+  }
+
+  createThought() {
+    console.log(this.thought)
   }
 
 }
