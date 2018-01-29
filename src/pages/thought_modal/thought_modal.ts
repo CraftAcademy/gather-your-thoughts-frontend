@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
+import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 
-/**
- * Generated class for the ThoughtPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
   selector: 'page-thought_modal',
   templateUrl: 'thought_modal.html',
 })
+
 export class ThoughtModalPage {
   thought = {}
-  constructor(private view: ViewController) {
+  constructor(private view: ViewController,
+              public thoughtsProvider: ThoughtsProvider) {
   }
 
   closeModal() {
@@ -26,7 +23,9 @@ export class ThoughtModalPage {
   }
 
   createThought() {
-    console.log(this.thought)
+    this.thoughtsProvider.saveThought(this.thought)
+    .subscribe(data => console.log(data),
+              data => console.log(data))
   }
 
 }
