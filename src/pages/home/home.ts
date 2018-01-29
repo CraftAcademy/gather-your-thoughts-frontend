@@ -9,7 +9,6 @@ import { ModalController } from 'ionic-angular';
 export class HomePage {
 
   constructor(public modalCtrl: ModalController) {
-
   }
 
   presentThoughtModal() {
