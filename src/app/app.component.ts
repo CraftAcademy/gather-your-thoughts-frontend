@@ -15,11 +15,11 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
   currentUser: any;
-  
+
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public _tokenService: Angular2TokenService,
+              private _tokenService: Angular2TokenService,
               public alertCtrl: AlertController ) {
 
     this.initializeApp();
@@ -47,7 +47,7 @@ export class MyApp {
           type: 'password'
         },
         {
-          name: 'password confirmation',
+          name: 'password_confirmation',
           placeholder: 'Confirm Password',
           type: 'password'
         }
@@ -75,7 +75,9 @@ export class MyApp {
     this._tokenService
       .registerAccount(credentials)
       .subscribe(
-        res => (this.currentUser = res.json().data),
+        res => { this.currentUser = res.json().data,
+          console.log(res)
+        },
         err => console.error('error')
       );
   }
