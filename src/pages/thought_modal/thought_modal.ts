@@ -38,6 +38,7 @@ export class ThoughtModalPage {
   }
 
   createThought() {
+    debugger;
     this.thoughtsProvider.saveThought(this.thought)
     .subscribe(
       data => {

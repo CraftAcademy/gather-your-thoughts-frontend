@@ -26,6 +26,16 @@
       <ion-label floating>Body</ion-label>
       <ion-textarea [(ngModel)]="thought.body" name="body"></ion-textarea>
     </ion-item>
+    <ion-item>
+      <ion-label>Label</ion-label>
+      <ion-select [(ngModel)]="thought.label" name="label">
+        <ion-option value="Movies">Movies</ion-option>
+        <ion-option value="Family">Family</ion-option>
+        <ion-option value="Relationship">Relationship</ion-option>
+        <ion-option value="Music">Music</ion-option>
+        <ion-option value="Ideas">Ideas</ion-option>
+      </ion-select>
+    </ion-item>
     <button ion-button type="submit" block>Create Thought</button>
   </form>
 </ion-content>
