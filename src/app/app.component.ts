@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
@@ -14,11 +14,13 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  currentUser :any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public _tokenService: Angular2TokenService ) {
+              public _tokenService: Angular2TokenService,
+              public alertCtrl: AlertController ) {
 
     this.initializeApp();
 
@@ -29,6 +31,13 @@ export class MyApp {
       { title: 'Home', component: HomePage }
     ];
 
+  }
+
+  logout() {
+    this._tokenService
+      .signOut()
+      .subscribe(res => console.log(res), err => console.error('error'));
+    this.currentUser = undefined;
   }
 
   initializeApp() {
