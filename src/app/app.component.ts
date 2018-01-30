@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
@@ -14,11 +14,13 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  currentUser: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public _tokenService: Angular2TokenService ) {
+              private _tokenService: Angular2TokenService,
+              public alertCtrl: AlertController ) {
 
     this.initializeApp();
 
@@ -29,6 +31,55 @@ export class MyApp {
       { title: 'Home', component: HomePage }
     ];
 
+  }
+
+  signupPopup() {
+    let alert = this.alertCtrl.create({
+      title: 'Sign up',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        },
+        {
+          name: 'password_confirmation',
+          placeholder: 'Confirm Password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked!');
+          }
+        },
+        {
+          text: 'Sign up',
+          handler: data => {
+            this.signup(data);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  signup(credentials) {
+    this._tokenService
+      .registerAccount(credentials)
+      .subscribe(
+        res => { this.currentUser = res.json().data,
+          console.log(res)
+        },
+        err => console.error('error')
+      );
   }
 
   initializeApp() {
