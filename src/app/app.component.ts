@@ -14,12 +14,12 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
-  currentUser :any;
+  currentUser: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public _tokenService: Angular2TokenService,
+              private _tokenService: Angular2TokenService,
               public alertCtrl: AlertController ) {
 
     this.initializeApp();
@@ -33,13 +33,102 @@ export class MyApp {
 
   }
 
+  loginPopup() {
+    console.log('popup');
+    let confirm = this.alertCtrl.create({
+      title: 'Login',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'email'
+        },
+        {
+          name: 'password',
+          placeholder: 'password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Login',
+          handler: data => {
+            this.login(data);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  signupPopup() {
+    let alert = this.alertCtrl.create({
+      title: 'Sign up',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
+        },
+        {
+          name: 'password_confirmation',
+          placeholder: 'Confirm Password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked!');
+          }
+        },
+        {
+          text: 'Sign up',
+          handler: data => {
+            this.signup(data);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  login(credentials) {
+    this._tokenService
+      .signIn(credentials)
+      .subscribe(
+        res => (this.currentUser = res.json().data),
+        err => console.error('error')
+      );
+  }
+
+  signup(credentials) {
+    this._tokenService
+      .registerAccount(credentials)
+      .subscribe(
+        res =>  (this.currentUser = res.json().data),
+        err => console.error('error')
+      );
+  }
+
   logout() {
     this._tokenService
       .signOut()
       .subscribe(res => console.log(res), err => console.error('error'));
     this.currentUser = undefined;
   }
-
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
