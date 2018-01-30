@@ -108,8 +108,8 @@ export class MyApp {
     this._tokenService
       .signIn(credentials)
       .subscribe(
-      res => (this.currentUser = res.json().data),
-      err => console.error('error')
+        res => (this.currentUser = res.json().data),
+        err => console.error('error')
       );
   }
 
@@ -117,9 +117,7 @@ export class MyApp {
     this._tokenService
       .registerAccount(credentials)
       .subscribe(
-        res => { this.currentUser = res.json().data,
-          console.log(res)
-        },
+        res =>  (this.currentUser = res.json().data),
         err => console.error('error')
       );
   }
