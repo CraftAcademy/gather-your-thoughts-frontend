@@ -122,6 +122,13 @@ export class MyApp {
       );
   }
 
+  logout() {
+    this._tokenService
+      .signOut()
+      .subscribe(res => console.log(res), err => console.error('error'));
+    this.currentUser = undefined;
+  }
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
