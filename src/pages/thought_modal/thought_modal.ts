@@ -23,7 +23,6 @@ export class ThoughtModalPage {
       duration: 2500,
       position: 'top'
     });
-
     toast.present();
   }
 
@@ -31,11 +30,8 @@ export class ThoughtModalPage {
     this.view.dismiss();
   }
 
-  thoughtCreate(flash_msg) {
-    if (flash_msg == "Thought was successfully created.") {
-      this.closeModal();
-    }
-    this.presentToast(flash_msg)
+  getErrorMessageFrom(error) {
+    return error.json().error[0];
   }
 
   ionViewDidLoad() {
@@ -43,8 +39,13 @@ export class ThoughtModalPage {
 
   createThought() {
     this.thoughtsProvider.saveThought(this.thought)
-    .subscribe(data => this.thoughtCreate("Thought was successfully created."),
-              data => this.thoughtCreate(data.json().error[0]))
+    .subscribe(
+      data => {
+        this.presentToast("Thought was successfully created.");
+        this.closeModal();
+    },
+      error => this.presentToast(this.getErrorMessageFrom(error))
+    )
   }
 
 }
