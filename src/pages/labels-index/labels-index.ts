@@ -12,7 +12,7 @@ export class LabelsIndexPage {
 
   constructor(public labelsProvider: LabelsProvider) {
     this.labelsProvider.getLabels().subscribe((data) => {
-      console.log(data);
+      this.labels = data.labels;
     });
   }
 

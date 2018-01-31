@@ -26,7 +26,7 @@ export class MyApp {
     this.initializeApp();
 
     this._tokenService.init({
-      apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
+      apiBase: ''
     });
     this.pages = [
       { title: 'Home', component: HomePage },

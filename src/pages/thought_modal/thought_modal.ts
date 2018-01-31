@@ -11,7 +11,6 @@ import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 
 export class ThoughtModalPage {
   thought = {}
-  label_list: any
 
   constructor(private view: ViewController,
               public thoughtsProvider: ThoughtsProvider,
