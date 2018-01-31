@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
+import { LabelsShowPage } from '../pages/labels-show/labels-show';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,8 @@ import { LabelsProvider } from '../providers/labels/labels';
   declarations: [
     MyApp,
     HomePage,
-    LabelsIndexPage
+    LabelsIndexPage,
+    LabelsShowPage
 
   ],
   imports: [
@@ -31,7 +33,8 @@ import { LabelsProvider } from '../providers/labels/labels';
   entryComponents: [
     MyApp,
     HomePage,
-    LabelsIndexPage
+    LabelsIndexPage,
+    LabelsShowPage
   ],
   providers: [
     StatusBar,
