@@ -28,7 +28,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Label</ion-label>
-      <ion-select [(ngModel)]="thought.label" name="label">
+      <ion-select [(ngModel)]="thought.label_list" name="label_list">
         <ion-option value="Movies">Movies</ion-option>
         <ion-option value="Family">Family</ion-option>
         <ion-option value="Relationship">Relationship</ion-option>
@@ -38,7 +38,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Sentiment</ion-label>
-      <ion-select [(ngModel)]="thought.sentiment" name="sentiment">
+      <ion-select [(ngModel)]="thought.sentiments" name="sentiment">
         <ion-option value="Happy">Happy</ion-option>
         <ion-option value="Sad">Sad</ion-option>
       </ion-select>
