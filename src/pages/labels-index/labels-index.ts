@@ -23,8 +23,7 @@ export class LabelsIndexPage {
   navigateToLabel(labelId, labelName) {
     this.navCtrl.push(LabelsShowPage, {
       id: labelId, name: labelName
-    })
-    console.log('gandalf')
+    });
   }
 
   ionViewDidLoad() {
