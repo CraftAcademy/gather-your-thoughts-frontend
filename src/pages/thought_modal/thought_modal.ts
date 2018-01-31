@@ -20,7 +20,7 @@ export class ThoughtModalPage {
   presentToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2500,
+      duration: 1500,
       position: 'top'
     });
     toast.present();
