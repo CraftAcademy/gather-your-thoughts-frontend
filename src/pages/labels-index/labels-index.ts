@@ -1,6 +1,7 @@
 import { LabelsProvider } from '../../providers/labels/labels';
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LabelsShowPage } from './../labels-show/labels-show';
 
 @IonicPage()
 @Component({
@@ -10,10 +11,20 @@ import { IonicPage } from 'ionic-angular';
 export class LabelsIndexPage {
   labels: any;
 
-  constructor(public labelsProvider: LabelsProvider) {
+  constructor(
+    public labelsProvider: LabelsProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
     this.labelsProvider.getLabels().subscribe((data) => {
       this.labels = data.labels;
     });
+  }
+
+  navigateToLabel(labelId, labelName) {
+    this.navCtrl.push(LabelsShowPage, {
+      id: labelId, name: labelName
+    })
+    console.log('gandalf')
   }
 
   ionViewDidLoad() {
