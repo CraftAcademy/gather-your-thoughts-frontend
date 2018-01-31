@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
+import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +29,8 @@ export class MyApp {
       apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
     });
     this.pages = [
-      { title: 'Home', component: HomePage }
+      { title: 'Home', component: HomePage },
+      { title: 'Labels', component: LabelsIndexPage }
     ];
 
   }
@@ -128,7 +130,7 @@ export class MyApp {
       .subscribe(res => console.log(res), err => console.error('error'));
     this.currentUser = undefined;
   }
-  
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

@@ -11,6 +11,7 @@ import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 
 export class ThoughtModalPage {
   thought = {}
+  label_list: any
 
   constructor(private view: ViewController,
               public thoughtsProvider: ThoughtsProvider,
@@ -38,6 +39,7 @@ export class ThoughtModalPage {
   }
 
   createThought() {
+    debugger;
     this.thoughtsProvider.saveThought(this.thought)
     .subscribe(
       data => {
