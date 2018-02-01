@@ -7,6 +7,10 @@ import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { LabelsShowPage } from '../pages/labels-show/labels-show';
 import { HistoryPage } from '../pages/history/history';
+import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
+import { SentimentsShowPage } from '../pages/sentiments-show/sentiments-show';
+
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ThoughtsProvider } from '../providers/thoughts/thoughts';
@@ -15,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { LabelsProvider } from '../providers/labels/labels';
 import { HistoryProvider } from '../providers/history/history';
+import { SentimentsProvider } from '../providers/sentiments/sentiments';
 
 @NgModule({
   declarations: [
@@ -22,8 +27,9 @@ import { HistoryProvider } from '../providers/history/history';
     HomePage,
     LabelsIndexPage,
     LabelsShowPage,
-    HistoryPage
-
+    HistoryPage,
+    SentimentsIndexPage,
+    SentimentsShowPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,9 @@ import { HistoryProvider } from '../providers/history/history';
     HomePage,
     LabelsIndexPage,
     LabelsShowPage,
-    HistoryPage
+    HistoryPage,
+    SentimentsIndexPage,
+    SentimentsShowPage
   ],
   providers: [
     StatusBar,
@@ -46,7 +54,8 @@ import { HistoryProvider } from '../providers/history/history';
     ThoughtsProvider,
     Angular2TokenService,
     LabelsProvider,
-    HistoryProvider
+    HistoryProvider,
+    SentimentsProvider
   ]
 })
 export class AppModule {}

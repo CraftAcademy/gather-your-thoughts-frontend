@@ -6,6 +6,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
+import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Labels', component: LabelsIndexPage },
-      { title: 'History', component: HistoryPage }
+      { title: 'History', component: HistoryPage },
+      { title: 'Labels', component: LabelsIndexPage },
+      { title: 'Sentiments', component: SentimentsIndexPage }
     ];
 
   }
