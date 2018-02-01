@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HistoryProvider } from '../../providers/history/history';
-
+import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 
 @IonicPage()
 @Component({
@@ -23,5 +23,11 @@ export class HistoryPage {
   dateThoughts() {
     this.historyProvider.getDateThoughts(this.myDate)
       .subscribe(({ data }) => this.thoughts = data);
+  }
+
+  navigateToThought(thoughtId) {
+    this.navCtrl.push(ThoughtsShowPage, {
+      id: thoughtId
+    });
   }
 }

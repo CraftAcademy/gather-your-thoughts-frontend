@@ -1,7 +1,7 @@
 import { LabelsProvider } from '../../providers/labels/labels';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 
 @IonicPage()
 @Component({
@@ -21,13 +21,19 @@ export class LabelsShowPage {
     if (this.navParams.get('id')) {
       this.labelId = this.navParams.get('id');
     }
-    
+
     if (this.navParams.get('name')) {
       this.labelName = this.navParams.get('name');
     }
 
     this.labelsProvider.getLabelThoughts(this.labelId).subscribe(({ data }) => {
       this.thoughts = data;
+    });
+  }
+
+  navigateToThought(thoughtId) {
+    this.navCtrl.push(ThoughtsShowPage, {
+      id: thoughtId
     });
   }
 

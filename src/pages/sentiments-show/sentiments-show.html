@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let thought of thoughts">
+  <ion-card *ngFor="let thought of thoughts" (click)="navigateToThought(thought.id)">
     <ion-card-header>{{ thought.attributes.title }}</ion-card-header>
   </ion-card>
 </ion-content>

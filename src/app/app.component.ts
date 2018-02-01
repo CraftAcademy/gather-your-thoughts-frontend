@@ -34,7 +34,6 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Labels', component: LabelsIndexPage },
       { title: 'History', component: HistoryPage },
-      { title: 'Labels', component: LabelsIndexPage },
       { title: 'Sentiments', component: SentimentsIndexPage }
     ];
 
