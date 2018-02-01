@@ -18,5 +18,7 @@
 
   <ion-card *ngFor="let thought of thoughts"  (click)="navigateToThought(thought.id)">
     <ion-card-header>{{ thought.attributes.title }}</ion-card-header>
+    <p> {{thought.attributes.sentiments}}</p>
+    <p> {{thought.attributes.labels}}</p>
   </ion-card>
 </ion-content>
