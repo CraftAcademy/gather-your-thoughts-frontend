@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { LabelsShowPage } from '../pages/labels-show/labels-show';
+import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,14 +15,15 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { LabelsProvider } from '../providers/labels/labels';
+import { SentimentsProvider } from '../providers/sentiments/sentiments';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LabelsIndexPage,
-    LabelsShowPage
-
+    LabelsShowPage,
+    SentimentsIndexPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { LabelsProvider } from '../providers/labels/labels';
     MyApp,
     HomePage,
     LabelsIndexPage,
-    LabelsShowPage
+    LabelsShowPage,
+    SentimentsIndexPage
   ],
   providers: [
     StatusBar,
@@ -42,7 +45,8 @@ import { LabelsProvider } from '../providers/labels/labels';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ThoughtsProvider,
     Angular2TokenService,
-    LabelsProvider
+    LabelsProvider,
+    SentimentsProvider
   ]
 })
 export class AppModule {}
