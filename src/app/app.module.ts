@@ -9,6 +9,7 @@ import { LabelsShowPage } from '../pages/labels-show/labels-show';
 import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 import { SentimentsShowPage } from '../pages/sentiments-show/sentiments-show';
+import { ThoughtsShowPage } from '../pages/thoughts-show/thoughts-show';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -29,7 +30,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     LabelsShowPage,
     HistoryPage,
     SentimentsIndexPage,
-    SentimentsShowPage
+    SentimentsShowPage,
+    ThoughtsShowPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     LabelsShowPage,
     HistoryPage,
     SentimentsIndexPage,
-    SentimentsShowPage
+    SentimentsShowPage,
+    ThoughtsShowPage
   ],
   providers: [
     StatusBar,

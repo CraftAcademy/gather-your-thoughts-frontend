@@ -12,4 +12,9 @@ export class ThoughtsProvider {
     return this._tokenService.post('thoughts', data).map(data => data);
   }
 
+  getThought(thoughtId) {
+    return this._tokenService.get(`thoughts/${thoughtId}`)
+          .map(res => res.json());
+  }
+
 }
