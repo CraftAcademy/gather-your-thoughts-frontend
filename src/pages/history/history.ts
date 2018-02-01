@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HistoryProvider } from '../../providers/history/history';
 
 
 @IonicPage()
@@ -9,7 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
   myDate: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  thoughts: any;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public historyProvider: HistoryProvider) {
   }
 
   ionViewDidLoad() {
@@ -17,7 +21,7 @@ export class HistoryPage {
   }
 
   dateThoughts() {
-    console.log(this.myDate);
-    debugger;
+    this.historyProvider.getDateThoughts(this.myDate)
+      .subscribe(({ data }) => this.thoughts = data);
   }
 }

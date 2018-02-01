@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { LabelsProvider } from '../providers/labels/labels';
+import { HistoryProvider } from '../providers/history/history';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LabelsProvider } from '../providers/labels/labels';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ThoughtsProvider,
     Angular2TokenService,
-    LabelsProvider
+    LabelsProvider,
+    HistoryProvider
   ]
 })
 export class AppModule {}

@@ -15,4 +15,8 @@
     <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="myDate"></ion-datetime>
   </ion-item>
   <button ion-button (click)="dateThoughts()" block>Find your thoughts!</button>
+
+  <ion-card *ngFor="let thought of thoughts">
+    <ion-card-header>{{ thought.attributes.title }}</ion-card-header>
+  </ion-card>
 </ion-content>
