@@ -12,6 +12,14 @@
     <ion-card-header> {{ thoughtTitle }}</ion-card-header>
     <ion-card-content>
       {{ thoughtBody }}
+      <h2>Labels:</h2>
+      <ion-list *ngFor="let label of thoughtLabels">
+        <li> {{ label }} </li>
+      </ion-list>
+      <h2>Sentiments:</h2>
+      <ion-list *ngFor="let sentiment of thoughtSentiments">
+        <li> {{ sentiment }} </li>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -13,7 +13,7 @@ export class ThoughtsShowPage {
   thoughtTitle :any;
   thoughtBody :any;
   thoughtLabels :any;
-  char = '-';
+  thoughtSentiments: any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,6 +27,8 @@ export class ThoughtsShowPage {
     this.thoughtsProvider.getThought(this.thoughtId).subscribe(({ data }) => {
       this.thoughtTitle = data.attributes.title;
       this.thoughtBody = data.attributes.body;
+      this.thoughtLabels = data.attributes.labels;
+      this.thoughtSentiments = data.attributes.sentiments;
     });
   }
 
