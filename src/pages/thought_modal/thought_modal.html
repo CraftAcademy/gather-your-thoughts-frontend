@@ -38,9 +38,12 @@
     </ion-item>
     <ion-item>
       <ion-label>Sentiment</ion-label>
-      <ion-select [(ngModel)]="thought.sentiments" name="sentiment">
+      <ion-select [(ngModel)]="thought.sentiment_list" name="sentiment_list">
         <ion-option value="Happy">Happy</ion-option>
         <ion-option value="Sad">Sad</ion-option>
+        <ion-option value="Angry">Angry</ion-option>
+        <ion-option value="Excited">Excited</ion-option>
+        <ion-option value="Neutral">Neutral</ion-option>
       </ion-select>
     </ion-item>
     <button ion-button type="submit" block>Create Thought</button>
