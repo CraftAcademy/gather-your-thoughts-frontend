@@ -11,4 +11,9 @@ export class SentimentsProvider {
     return this._tokenService.get('sentiments')
           .map(res => res.json());
   }
+
+  getSentimentThoughts(sentimentId) {
+    return this._tokenService.get(`sentiments/${sentimentId}`)
+          .map(res => res.json());
+  }
 }
