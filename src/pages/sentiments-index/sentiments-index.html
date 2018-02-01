@@ -11,7 +11,7 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let sentiment of sentiments">
+  <ion-card *ngFor="let sentiment of sentiments" (click)="navigateToSentiment(sentiment.id, sentiment.name)">
     <ion-card-header>{{ sentiment.name }}</ion-card-header>
   </ion-card>
 </ion-content>
