@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { LabelsShowPage } from '../pages/labels-show/labels-show';
-
+import { HistoryPage } from '../pages/history/history';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ThoughtsProvider } from '../providers/thoughts/thoughts';
@@ -20,7 +20,8 @@ import { LabelsProvider } from '../providers/labels/labels';
     MyApp,
     HomePage,
     LabelsIndexPage,
-    LabelsShowPage
+    LabelsShowPage,
+    HistoryPage
 
   ],
   imports: [
@@ -34,7 +35,8 @@ import { LabelsProvider } from '../providers/labels/labels';
     MyApp,
     HomePage,
     LabelsIndexPage,
-    LabelsShowPage
+    LabelsShowPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,

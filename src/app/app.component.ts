@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
+import { HistoryPage } from '../pages/history/history';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,8 @@ export class MyApp {
     });
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Labels', component: LabelsIndexPage }
+      { title: 'Labels', component: LabelsIndexPage },
+      { title: 'History', component: HistoryPage }
     ];
 
   }
