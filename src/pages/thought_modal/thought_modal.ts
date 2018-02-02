@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, ToastController } from 'ionic-angular';
 import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
-
+import { LabelsProvider } from '../../providers/labels/labels';
 
 @IonicPage()
 @Component({
@@ -10,11 +10,35 @@ import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 })
 
 export class ThoughtModalPage {
-  thought = {}
+  thought = {};
+  inputVal :any;
+  labels :any;
+  count :any;
+  label :boolean;
 
   constructor(private view: ViewController,
               public thoughtsProvider: ThoughtsProvider,
+              public labelsProvider: LabelsProvider,
               private toastCtrl: ToastController) {
+
+  this.labelsProvider.getLabels().subscribe((data) => {
+    this.labels = data.labels;
+    this.count = this.labels.length;
+  });
+
+  }
+
+  newLabelSet(val) {
+    this.thought.label_list = val;
+    if (!this.inputVal) {
+      this.thought.label_list = undefined;
+    }
+  }
+
+  previousLabelSet() {
+    if (this.thought.label_list && !this.inputVal) {
+      this.label = true;
+    }
   }
 
   presentToast(msg) {
