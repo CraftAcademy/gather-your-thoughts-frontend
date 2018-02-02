@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
-import  { StatsPieChart } from '../../data/data'
+import { StatsPieChart } from '../../data/data';
+import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 
 import * as d3 from 'd3-selection';
 import * as d3Scale from "d3-scale";
@@ -10,6 +11,8 @@ import * as d3Shape from "d3-shape";
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
 
   title: string = 'D3 Pie Chart in Ionic 3';
@@ -25,16 +28,18 @@ export class HomePage {
   pie: any;
   color: any;
   svg: any;
+  sentiments: any;
 
-  constructor(public modalCtrl: ModalController) {
+  constructor(public modalCtrl: ModalController, public labelsProvider: SentimentsProvider) {
+    this.labelsProvider.getSentiments().subscribe((data) => {
+      console.log(data);
+      this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
+      this.initSvg();
+      this.drawPie();
+    });
     this.width = 900 - this.margin.left - this.margin.right ;
     this.height = 500 - this.margin.top - this.margin.bottom;
     this.radius = Math.min(this.width, this.height) / 2;
-  }
-
-  ionViewDidLoad() {
-    this.initSvg()
-    this.drawPie();
   }
 
   presentThoughtModal() {
@@ -72,7 +77,7 @@ export class HomePage {
 
   drawPie() {
     let g = this.svg.selectAll(".arc")
-      .data(this.pie(StatsPieChart))
+      .data(this.pie(this.sentiments))
       .enter().append("g")
       .attr("class", "arc");
     g.append("path").attr("d", this.arc)
