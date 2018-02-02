@@ -1,9 +1,3 @@
-<!--
-  Generated template for the ThoughtPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -28,13 +22,13 @@
     </ion-item>
     <ion-item>
       <ion-label>Choose one of {{ count }} previous labels</ion-label>
-      <ion-select [(ngModel)]="thought.label_list" name="label_list" (ionChange)="labelSet()">
+      <ion-select [(ngModel)]="thought.label_list" name="label_list" (ionChange)="previousLabelSet()">
         <ion-option *ngFor="let label of labels">{{ label.name }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item *ngIf="!label">
       <ion-label>Choose a new label</ion-label>
-      <ion-input [(ngModel)]="inputVal" (keyup)="test(inputVal)" name="label_input"></ion-input>
+      <ion-input [(ngModel)]="inputVal" (keyup)="newLabelSet(inputVal)" name="label_input"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Sentiment</ion-label>

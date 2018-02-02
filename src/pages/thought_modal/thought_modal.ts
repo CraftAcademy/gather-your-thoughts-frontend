@@ -28,15 +28,15 @@ export class ThoughtModalPage {
 
   }
 
-  test(val) {
+  newLabelSet(val) {
     this.thought.label_list = val;
     if (!this.inputVal) {
       this.thought.label_list = undefined;
     }
   }
 
-  labelSet() {
-    if (this.thought && !this.inputVal) {
+  previousLabelSet() {
+    if (this.thought.label_list && !this.inputVal) {
       this.label = true;
     }
   }
