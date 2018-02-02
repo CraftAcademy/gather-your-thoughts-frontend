@@ -10,6 +10,6 @@
 
 <ion-content padding>
   <ion-card *ngFor="let label of labels" (click)="navigateToLabel(label.id, label.name)">
-    <ion-card-header> {{ label.name }} </ion-card-header>
+    <ion-card-header> {{ label.name }} ({{label.taggings_count}}) </ion-card-header>
   </ion-card>
 </ion-content>
