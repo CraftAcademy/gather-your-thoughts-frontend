@@ -44,10 +44,10 @@ export class HomePage {
 
   initSvg() {
     this.color = d3Scale.scaleOrdinal()
-      .range(["#FFA500", "#00FF00", "#FF0000", "#6b486b", "#FF00FF", "#d0743c", "#00FA9A"]);
+      .range(["#3366CC", "#DC3912", "#FF9900", "#109618", "#990099", "grey", "#00FA9A"]);
     this.arc = d3Shape.arc()
       .outerRadius(this.radius - 10)
-      .innerRadius(0);
+      .innerRadius(100);
     this.labelArc = d3Shape.arc()
       .outerRadius(this.radius - 40)
       .innerRadius(this.radius - 40);
