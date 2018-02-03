@@ -10,7 +10,6 @@ import { SentimentsShowPage } from '../sentiments-show/sentiments-show';
 })
 export class SentimentsIndexPage {
   sentiments :any;
-  myColor: string;
 
   constructor(
     public navCtrl: NavController,
@@ -21,7 +20,6 @@ export class SentimentsIndexPage {
       this.sentiments = data.sentiments;
     });
   }
-
 
   navigateToSentiment(sentimentId, sentimentName) {
     this.navCtrl.push(SentimentsShowPage, {
