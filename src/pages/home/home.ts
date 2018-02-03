@@ -88,7 +88,7 @@ export class HomePage {
 
     g.append("text").attr("transform", (d: any) => "translate(" + this.labelPer.centroid(d) + ")")
       .attr("dy", ".35em")
-      .text((d: any) => d.data.amount + "%");
+      .text((d: any) => d.data.amount);
   }
 
 
