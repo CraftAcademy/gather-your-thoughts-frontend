@@ -14,7 +14,6 @@ export class ThoughtsShowPage {
   thoughtBody :any;
   thoughtLabels :any;
   thoughtSentiment: any;
-  msg: any;
 
   constructor(
     public navCtrl: NavController,
@@ -54,7 +53,6 @@ export class ThoughtsShowPage {
                 msg: data.message
               });
             });
-
           }
         }
       ]
