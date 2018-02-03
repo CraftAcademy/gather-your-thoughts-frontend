@@ -6,7 +6,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="{{ sentimentName.toLowerCase() }}">
   <ion-card *ngFor="let thought of thoughts" (click)="navigateToThought(thought.id)">
     <ion-card-header>{{ thought.attributes.title }}</ion-card-header>
   </ion-card>

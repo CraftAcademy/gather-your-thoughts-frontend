@@ -10,7 +10,7 @@ import { LabelsProvider } from '../../providers/labels/labels';
 })
 
 export class ThoughtModalPage {
-  thought = {};
+  thought = { label_list: undefined };
   inputVal :any;
   labels :any;
   count :any;
