@@ -55,10 +55,6 @@ export class HomePage {
     this.radius = Math.min(this.width, this.height) / 2;
   }
 
-  presentToast(msg) {
-
-  }
-
   presentThoughtModal() {
     let thoughtModal = this.modalCtrl.create('ThoughtModalPage');
     thoughtModal.onDidDismiss(() => {
