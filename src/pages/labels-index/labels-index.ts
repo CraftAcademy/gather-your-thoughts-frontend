@@ -17,6 +17,9 @@ export class LabelsIndexPage {
     public navParams: NavParams) {
     this.labelsProvider.getLabels().subscribe((data) => {
       this.labels = data.labels;
+      console.log(this.labels.sort(function(label) {
+        return label.name;
+      }));
     });
   }
 

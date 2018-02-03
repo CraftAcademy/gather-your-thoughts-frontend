@@ -14,3 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.happy {
+  background-color: #FF9900;
+}
+
+.sad {
+  background-color: lightBlue;
+}
+
+.excited {
+  background-color: lightgreen;
+}
+
+.angry {
+  background-color: #DC3912;
+}
+
+.sentiment {
+  border: 1px solid black;
+  border-radius: 4px;
+}
