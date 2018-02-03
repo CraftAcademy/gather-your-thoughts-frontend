@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 
 import * as d3 from 'd3-selection';
@@ -29,7 +29,9 @@ export class HomePage {
   svg: any;
   sentiments: any;
 
-  constructor(public modalCtrl: ModalController, public sentimentsProvider: SentimentsProvider) {
+  constructor(public modalCtrl: ModalController,
+              public sentimentsProvider: SentimentsProvider,
+              public navCtrl: NavController) {
     this.sentimentsProvider.getSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
@@ -42,6 +44,9 @@ export class HomePage {
 
   presentThoughtModal() {
     let thoughtModal = this.modalCtrl.create('ThoughtModalPage');
+    thoughtModal.onDidDismiss(() => {
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    });
     thoughtModal.present();
   }
 
