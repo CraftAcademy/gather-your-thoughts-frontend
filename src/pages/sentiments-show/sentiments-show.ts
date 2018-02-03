@@ -13,6 +13,7 @@ export class SentimentsShowPage {
   sentimentName :any;
   thoughts :any;
   thoughtId :any;
+  pageBackground :any;
 
   constructor(
     public navCtrl: NavController,
@@ -29,6 +30,9 @@ export class SentimentsShowPage {
 
     this.sentimentsProvider.getSentimentThoughts(this.sentimentId).subscribe(({ data }) => {
       this.thoughts = data;
+      this.thoughts.forEach(function(thought) {
+        console.log(thought.attributes.sentiments[0].toLowerCase());
+      });
     });
   }
 
