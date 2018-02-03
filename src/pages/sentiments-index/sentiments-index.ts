@@ -18,6 +18,18 @@ export class SentimentsIndexPage {
 
     this.sentimentsProvider.getSentiments().subscribe((data) => {
       this.sentiments = data.sentiments;
+      this.sentiments.sort(function(a, b) {
+        var x = a.taggings_count;
+        var y = b.taggings_count;
+
+        if (x > y) {
+          return -1;
+        }
+        if (y > x) {
+          return 1;
+        }
+        return 0;
+      });
     });
   }
 

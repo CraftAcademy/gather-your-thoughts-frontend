@@ -17,6 +17,18 @@ export class LabelsIndexPage {
     public navParams: NavParams) {
     this.labelsProvider.getLabels().subscribe((data) => {
       this.labels = data.labels;
+      this.labels.sort(function(a, b) {
+        var x = a.taggings_count;
+        var y = b.taggings_count;
+
+        if (x > y) {
+          return -1;
+        }
+        if (y > x) {
+          return 1;
+        }
+        return 0;
+      });
     });
   }
 
