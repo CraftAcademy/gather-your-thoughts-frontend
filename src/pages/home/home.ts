@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 
 import * as d3 from 'd3-selection';
@@ -31,7 +31,20 @@ export class HomePage {
 
   constructor(public modalCtrl: ModalController,
               public sentimentsProvider: SentimentsProvider,
-              public navCtrl: NavController) {
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              private toastCtrl: ToastController) {
+
+      if (this.navParams.get('msg')) {
+        let toast = this.toastCtrl.create({
+          message: this.navParams.get('msg'),
+          duration: 1500,
+          position: 'top'
+        });
+        toast.present();
+      }
+
+
     this.sentimentsProvider.getSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
@@ -40,6 +53,10 @@ export class HomePage {
     this.width = 900 - this.margin.left - this.margin.right ;
     this.height = 500 - this.margin.top - this.margin.bottom;
     this.radius = Math.min(this.width, this.height) / 2;
+  }
+
+  presentToast(msg) {
+
   }
 
   presentThoughtModal() {

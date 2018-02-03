@@ -8,18 +8,19 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header> {{ thoughtTitle }}</ion-card-header>
-    <ion-card-content>
-      {{ thoughtBody }}
-      <h2>Labels:</h2>
-      <ion-list *ngFor="let label of thoughtLabels">
-        <li> {{ label }} </li>
-      </ion-list>
-      <h2>Sentiments:</h2>
-      <ion-list *ngFor="let sentiment of thoughtSentiments">
-        <li> {{ sentiment }} </li>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <div class="thought">
+    <h1> {{ thoughtTitle }}</h1>
+    <p> {{ thoughtBody }} </p>
+    <h4>Labels:</h4>
+    <ion-list *ngFor="let label of thoughtLabels">
+      <li> {{ label }} </li>
+    </ion-list>
+    <h4>Sentiments:</h4>
+    <ion-list>
+      <li> {{ thoughtSentiment }} </li>
+    </ion-list>
+    <div>
+      <button ion-button (click)="deletePopup()">Delete</button>
+    </div>
+  </div>
 </ion-content>
