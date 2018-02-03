@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular';
-import { StatsPieChart } from '../../data/data';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 
 import * as d3 from 'd3-selection';
@@ -30,8 +29,8 @@ export class HomePage {
   svg: any;
   sentiments: any;
 
-  constructor(public modalCtrl: ModalController, public labelsProvider: SentimentsProvider) {
-    this.labelsProvider.getSentiments().subscribe((data) => {
+  constructor(public modalCtrl: ModalController, public sentimentsProvider: SentimentsProvider) {
+    this.sentimentsProvider.getSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
       this.drawPie();
