@@ -15,6 +15,7 @@ export class ThoughtModalPage {
   labels :any;
   count :any;
   label :boolean;
+  label_list :any;
 
   constructor(private view: ViewController,
               public thoughtsProvider: ThoughtsProvider,

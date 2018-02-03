@@ -32,7 +32,6 @@ export class HomePage {
 
   constructor(public modalCtrl: ModalController, public labelsProvider: SentimentsProvider) {
     this.labelsProvider.getSentiments().subscribe((data) => {
-      console.log(data);
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
       this.drawPie();
