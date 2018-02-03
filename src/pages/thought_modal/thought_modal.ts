@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
 import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 import { LabelsProvider } from '../../providers/labels/labels';
 
@@ -17,6 +17,7 @@ export class ThoughtModalPage {
   label :boolean;
 
   constructor(private view: ViewController,
+              public navCtrl: NavController,
               public thoughtsProvider: ThoughtsProvider,
               public labelsProvider: LabelsProvider,
               private toastCtrl: ToastController) {
@@ -56,9 +57,6 @@ export class ThoughtModalPage {
 
   getErrorMessageFrom(error) {
     return error.json().error[0];
-  }
-
-  ionViewDidLoad() {
   }
 
   createThought() {
