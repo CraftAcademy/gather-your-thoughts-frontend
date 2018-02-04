@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
-
+import { ThoughtsProvider } from '../../providers/thoughts/thoughts'
 import * as d3 from 'd3-selection';
 import * as d3Scale from "d3-scale";
 import * as d3Shape from "d3-shape";
+import {ThoughtsShowPage} from "../thoughts-show/thoughts-show";
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ export class HomePage {
   width: number;
   height: number;
   radius: number;
+  thoughts: any;
 
   arc: any;
   labelArc: any;
@@ -31,6 +33,7 @@ export class HomePage {
 
   constructor(public modalCtrl: ModalController,
               public sentimentsProvider: SentimentsProvider,
+              public thoughtsProvider: ThoughtsProvider,
               public navCtrl: NavController,
               public navParams: NavParams,
               private toastCtrl: ToastController) {
@@ -53,6 +56,10 @@ export class HomePage {
     this.width = 900 - this.margin.left - this.margin.right ;
     this.height = 500 - this.margin.top - this.margin.bottom;
     this.radius = Math.min(this.width, this.height) / 2;
+
+    this.thoughtsProvider.getRecentThoughts().subscribe(({data}) => {
+      this.thoughts = data.reverse();
+    })
   }
 
   presentThoughtModal() {
@@ -61,6 +68,12 @@ export class HomePage {
       this.navCtrl.setRoot(this.navCtrl.getActive().component);
     });
     thoughtModal.present();
+  }
+
+  navigateToThought(thoughtId) {
+    this.navCtrl.push(ThoughtsShowPage, {
+      id: thoughtId
+    });
   }
 
   initSvg() {

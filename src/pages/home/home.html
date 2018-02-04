@@ -15,4 +15,8 @@
   </ion-card>
   <h5> Your thoughts by sentiment. How have you been feeling?</h5>
   <div id="pieChart"></div>
+  <h6>Your most recent thoughts</h6>
+  <ion-card *ngFor="let thought of thoughts" (click)="navigateToThought(thought.id)">
+    <ion-card-header> {{thought.attributes.title}} </ion-card-header>
+  </ion-card>
 </ion-content>
