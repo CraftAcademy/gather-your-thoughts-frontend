@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
+import { App, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 
 import * as d3 from 'd3-selection';
@@ -33,7 +33,8 @@ export class HomePage {
               public sentimentsProvider: SentimentsProvider,
               public navCtrl: NavController,
               public navParams: NavParams,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              public appCtrl: App) {
 
       if (this.navParams.get('msg')) {
         let toast = this.toastCtrl.create({
@@ -57,9 +58,6 @@ export class HomePage {
 
   presentThoughtModal() {
     let thoughtModal = this.modalCtrl.create('ThoughtModalPage');
-    thoughtModal.onDidDismiss(() => {
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    });
     thoughtModal.present();
   }
 

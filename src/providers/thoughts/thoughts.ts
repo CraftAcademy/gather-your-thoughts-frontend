@@ -21,4 +21,8 @@ export class ThoughtsProvider {
     return this._tokenService.delete(`thoughts/${thoughtId}`)
           .map(res => res.json());
   }
+
+  updateThought(thoughtId, data) {
+    return this._tokenService.put(`thoughts/${thoughtId}`, data).map(data => data);
+  }
 }

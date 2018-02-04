@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
 import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
 import { HomePage } from '../../pages/home/home';
+import { UpdateThoughtModalPage } from '../../pages/update-thought-modal/update-thought-modal';
 
 @IonicPage()
 @Component({
@@ -14,15 +15,28 @@ export class ThoughtsShowPage {
   thoughtBody :any;
   thoughtLabels :any;
   thoughtSentiment: any;
+  thought = {};
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public thoughtsProvider: ThoughtsProvider,
-    public alertCtrl: AlertController
+    public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
+
   ) {
     if (this.navParams.get('id')) {
       this.thoughtId = this.navParams.get('id');
+    }
+
+    if (this.navParams.get('msg')) {
+      let toast = this.toastCtrl.create({
+        message: this.navParams.get('msg'),
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
     }
 
     this.thoughtsProvider.getThought(this.thoughtId).subscribe(({ data }) => {
@@ -58,6 +72,13 @@ export class ThoughtsShowPage {
       ]
     });
     alert.present();
+  }
+
+  presentUpdateModal() {
+    let thought = { id: this.thoughtId, title: this.thoughtTitle, body: this.thoughtBody };
+    let updateModal = this.modalCtrl.create('UpdateThoughtModalPage', thought);
+
+    updateModal.present();
   }
 
   ionViewDidLoad() {
