@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HistoryProvider } from '../../providers/history/history';
-import { EntriesShowPage } from '../../pages/Entries-show/Entries-show';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({
@@ -25,7 +25,7 @@ export class HistoryPage {
       .subscribe(({ data }) => this.Entries = data);
   }
 
-  navigateToentry(entryId) {
+  navigateToEntry(entryId) {
     this.navCtrl.push(EntriesShowPage, {
       id: entryId
     });

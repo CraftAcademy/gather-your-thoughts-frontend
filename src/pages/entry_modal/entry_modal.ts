@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
-import { EntriesProvider } from '../../providers/Entries/entries';
+import { EntriesProvider } from '../../providers/entries/entries';
 import { LabelsProvider } from '../../providers/labels/labels';
 
 @IonicPage()
 @Component({
-  selector: 'page-Entry_modal',
-  templateUrl: 'Entry_modal.html',
+  selector: 'page-entry_modal',
+  templateUrl: 'entry_modal.html',
 })
 
 export class EntryModalPage {
-  Entry = { label_list: undefined };
+  entry = { label_list: undefined };
   inputVal :any;
   labels :any;
   count :any;
@@ -18,7 +18,7 @@ export class EntryModalPage {
 
   constructor(private view: ViewController,
               public navCtrl: NavController,
-              public EntriesProvider: EntriesProvider,
+              public entriesProvider: EntriesProvider,
               public labelsProvider: LabelsProvider,
               private toastCtrl: ToastController) {
 
@@ -30,14 +30,14 @@ export class EntryModalPage {
   }
 
   newLabelSet(val) {
-    this.Entry.label_list = val;
+    this.entry.label_list = val;
     if (!this.inputVal) {
-      this.Entry.label_list = undefined;
+      this.entry.label_list = undefined;
     }
   }
 
   previousLabelSet() {
-    if (this.Entry.label_list && !this.inputVal) {
+    if (this.entry.label_list && !this.inputVal) {
       this.label = true;
     }
   }
@@ -60,7 +60,7 @@ export class EntryModalPage {
   }
 
   createEntry() {
-    this.EntriesProvider.saveEntry(this.Entry)
+    this.entriesProvider.saveEntry(this.entry)
     .subscribe(
       data => {
         this.presentToast("Entry was successfully created.");

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
-import { EntriesShowPage } from '../../pages/Entries-show/Entries-show';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({

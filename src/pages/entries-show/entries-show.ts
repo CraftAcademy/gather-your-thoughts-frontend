@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { EntriesProvider } from '../../providers/Entries/entries';
+import { EntriesProvider } from '../../providers/entries/entries';
 import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-Entries-show',
+  selector: 'page-entries-show',
   templateUrl: 'entries-show.html',
 })
 export class EntriesShowPage {
@@ -13,23 +13,23 @@ export class EntriesShowPage {
   entryTitle :any;
   entryBody :any;
   entryLabels :any;
-  Entriesentiment: any;
+  entriesSentiment: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public EntriesProvider: EntriesProvider,
+    public entriesProvider: EntriesProvider,
     public alertCtrl: AlertController
   ) {
     if (this.navParams.get('id')) {
       this.entryId = this.navParams.get('id');
     }
 
-    this.EntriesProvider.getentry(this.entryId).subscribe(({ data }) => {
+    this.entriesProvider.getEntry(this.entryId).subscribe(({ data }) => {
       this.entryTitle = data.attributes.title;
       this.entryBody = data.attributes.body;
       this.entryLabels = data.attributes.labels;
-      this.Entriesentiment = data.attributes.sentiments[0];
+      this.entriesSentiment = data.attributes.sentiments[0];
     });
   }
 
@@ -48,7 +48,7 @@ export class EntriesShowPage {
         {
           text: 'Delete',
           handler: () => {
-            this.EntriesProvider.deleteentry(this.entryId).subscribe((data) => {
+            this.entriesProvider.deleteEntry(this.entryId).subscribe((data) => {
               this.navCtrl.setRoot(HomePage, {
                 msg: data.message
               });

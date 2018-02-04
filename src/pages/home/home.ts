@@ -63,16 +63,16 @@ export class HomePage {
   }
 
   presentEntryModal() {
-    let EntryModal = this.modalCtrl.create('EntryModalPage');
-    EntryModal.onDidDismiss(() => {
+    let entryModal = this.modalCtrl.create('EntryModalPage');
+    entryModal.onDidDismiss(() => {
       this.navCtrl.setRoot(this.navCtrl.getActive().component);
     });
-    EntryModal.present();
+    entryModal.present();
   }
 
-  navigateToEntry(EntryId) {
+  navigateToEntry(entryId) {
     this.navCtrl.push(EntriesShowPage, {
-      id: EntryId
+      id: entryId
     });
   }
 
