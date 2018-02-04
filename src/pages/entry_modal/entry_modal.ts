@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
-import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
+import { EntriesProvider } from '../../providers/Entries/entries';
 import { LabelsProvider } from '../../providers/labels/labels';
 
 @IonicPage()
 @Component({
-  selector: 'page-thought_modal',
-  templateUrl: 'thought_modal.html',
+  selector: 'page-Entry_modal',
+  templateUrl: 'Entry_modal.html',
 })
 
-export class ThoughtModalPage {
-  thought = { label_list: undefined };
+export class EntryModalPage {
+  Entry = { label_list: undefined };
   inputVal :any;
   labels :any;
   count :any;
@@ -18,7 +18,7 @@ export class ThoughtModalPage {
 
   constructor(private view: ViewController,
               public navCtrl: NavController,
-              public thoughtsProvider: ThoughtsProvider,
+              public EntriesProvider: EntriesProvider,
               public labelsProvider: LabelsProvider,
               private toastCtrl: ToastController) {
 
@@ -30,14 +30,14 @@ export class ThoughtModalPage {
   }
 
   newLabelSet(val) {
-    this.thought.label_list = val;
+    this.Entry.label_list = val;
     if (!this.inputVal) {
-      this.thought.label_list = undefined;
+      this.Entry.label_list = undefined;
     }
   }
 
   previousLabelSet() {
-    if (this.thought.label_list && !this.inputVal) {
+    if (this.Entry.label_list && !this.inputVal) {
       this.label = true;
     }
   }
@@ -59,11 +59,11 @@ export class ThoughtModalPage {
     return error.json().error[0];
   }
 
-  createThought() {
-    this.thoughtsProvider.saveThought(this.thought)
+  createEntry() {
+    this.EntriesProvider.saveEntry(this.Entry)
     .subscribe(
       data => {
-        this.presentToast("Thought was successfully created.");
+        this.presentToast("Entry was successfully created.");
         this.closeModal();
     },
       error => this.presentToast(this.getErrorMessageFrom(error))

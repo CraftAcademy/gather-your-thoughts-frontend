@@ -14,7 +14,7 @@ import { ThoughtsShowPage } from '../pages/thoughts-show/thoughts-show';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ThoughtsProvider } from '../providers/thoughts/thoughts';
+import { ThoughtsProvider } from '../providers/thoughts/entries';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';

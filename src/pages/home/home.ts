@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
-import { ThoughtsProvider } from '../../providers/thoughts/thoughts'
+import { EntriesProvider } from '../../providers/entries/entries'
 import * as d3 from 'd3-selection';
 import * as d3Scale from "d3-scale";
 import * as d3Shape from "d3-shape";
-import {ThoughtsShowPage} from "../thoughts-show/thoughts-show";
+import { EntriesShowPage } from "../entries-show/entries-show";
 
 @Component({
   selector: 'page-home',
@@ -21,7 +21,7 @@ export class HomePage {
   width: number;
   height: number;
   radius: number;
-  thoughts: any;
+  entries: any;
 
   arc: any;
   labelArc: any;
@@ -33,7 +33,7 @@ export class HomePage {
 
   constructor(public modalCtrl: ModalController,
               public sentimentsProvider: SentimentsProvider,
-              public thoughtsProvider: ThoughtsProvider,
+              public entriesProvider: EntriesProvider,
               public navCtrl: NavController,
               public navParams: NavParams,
               private toastCtrl: ToastController) {
@@ -57,22 +57,22 @@ export class HomePage {
     this.height = 500 - this.margin.top - this.margin.bottom;
     this.radius = Math.min(this.width, this.height) / 2;
 
-    this.thoughtsProvider.getRecentThoughts().subscribe(({data}) => {
-      this.thoughts = data.reverse();
+    this.entriesProvider.getRecentEntries().subscribe(({data}) => {
+      this.entries = data.reverse();
     })
   }
 
-  presentThoughtModal() {
-    let thoughtModal = this.modalCtrl.create('ThoughtModalPage');
-    thoughtModal.onDidDismiss(() => {
+  presentEntryModal() {
+    let EntryModal = this.modalCtrl.create('EntryModalPage');
+    EntryModal.onDidDismiss(() => {
       this.navCtrl.setRoot(this.navCtrl.getActive().component);
     });
-    thoughtModal.present();
+    EntryModal.present();
   }
 
-  navigateToThought(thoughtId) {
-    this.navCtrl.push(ThoughtsShowPage, {
-      id: thoughtId
+  navigateToEntry(EntryId) {
+    this.navCtrl.push(EntriesShowPage, {
+      id: EntryId
     });
   }
 
