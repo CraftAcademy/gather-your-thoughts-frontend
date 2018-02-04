@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
-
+import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
 @Component({
@@ -13,12 +13,13 @@ export class ThoughtsShowPage {
   thoughtTitle :any;
   thoughtBody :any;
   thoughtLabels :any;
-  thoughtSentiments: any;
+  thoughtSentiment: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public thoughtsProvider: ThoughtsProvider
+    public thoughtsProvider: ThoughtsProvider,
+    public alertCtrl: AlertController
   ) {
     if (this.navParams.get('id')) {
       this.thoughtId = this.navParams.get('id');
@@ -28,8 +29,35 @@ export class ThoughtsShowPage {
       this.thoughtTitle = data.attributes.title;
       this.thoughtBody = data.attributes.body;
       this.thoughtLabels = data.attributes.labels;
-      this.thoughtSentiments = data.attributes.sentiments;
+      this.thoughtSentiment = data.attributes.sentiments[0];
     });
+  }
+
+  deletePopup() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm deletion',
+      message: `Do you wish to delete ${this.thoughtTitle} thought?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked!');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.thoughtsProvider.deleteThought(this.thoughtId).subscribe((data) => {
+              this.navCtrl.setRoot(HomePage, {
+                msg: data.message
+              });
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   ionViewDidLoad() {

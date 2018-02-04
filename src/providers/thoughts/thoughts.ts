@@ -17,4 +17,8 @@ export class ThoughtsProvider {
           .map(res => res.json());
   }
 
+  deleteThought(thoughtId) {
+    return this._tokenService.delete(`thoughts/${thoughtId}`)
+          .map(res => res.json());
+  }
 }
