@@ -48,7 +48,7 @@ export class HomePage {
       }
 
 
-    this.sentimentsProvider.getSentiments().subscribe((data) => {
+    this.sentimentsProvider.getMonthSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
       this.drawPie();
@@ -102,6 +102,7 @@ export class HomePage {
       .attr('viewBox','0 0 '+Math.min(this.width,this.height)+' '+Math.min(this.width,this.height))
       .append("g")
       .attr("transform", "translate(" + Math.min(this.width,this.height) / 2 + "," + Math.min(this.width,this.height) / 2 + ")");
+
   }
 
   drawPie() {
@@ -119,6 +120,5 @@ export class HomePage {
       .attr("dy", ".35em")
       .text((d: any) => d.data.amount);
   }
-
 
 }
