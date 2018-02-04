@@ -22,7 +22,7 @@ export class ThoughtsProvider {
           .map(res => res.json());
   }
 
-  updateThought(thoughtId, data) {
-    return this._tokenService.put(`thoughts/${thoughtId}`, data).map(data => data);
+  updateEntry(entryId, data) {
+    return this._tokenService.put(`entries/${entryId}`, data).map(data => data);
   }
 }

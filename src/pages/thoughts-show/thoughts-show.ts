@@ -10,9 +10,9 @@ import { UpdateThoughtModalPage } from '../../pages/update-thought-modal/update-
   templateUrl: 'thoughts-show.html',
 })
 export class ThoughtsShowPage {
-  thoughtId :any;
-  thoughtTitle :any;
-  thoughtBody :any;
+  entryId :any;
+  entryTitle :any;
+  entryBody :any;
   thoughtLabels :any;
   thoughtSentiment: any;
   thought = {};
@@ -27,7 +27,7 @@ export class ThoughtsShowPage {
 
   ) {
     if (this.navParams.get('id')) {
-      this.thoughtId = this.navParams.get('id');
+      this.entryId = this.navParams.get('id');
     }
 
     if (this.navParams.get('msg')) {
@@ -40,8 +40,8 @@ export class ThoughtsShowPage {
     }
 
     this.thoughtsProvider.getThought(this.thoughtId).subscribe(({ data }) => {
-      this.thoughtTitle = data.attributes.title;
-      this.thoughtBody = data.attributes.body;
+      this.entryTitle = data.attributes.title;
+      this.entryBody = data.attributes.body;
       this.thoughtLabels = data.attributes.labels;
       this.thoughtSentiment = data.attributes.sentiments[0];
     });
@@ -50,7 +50,7 @@ export class ThoughtsShowPage {
   deletePopup() {
     let alert = this.alertCtrl.create({
       title: 'Confirm deletion',
-      message: `Do you wish to delete ${this.thoughtTitle} thought?`,
+      message: `Do you wish to delete ${this.entryTitle} thought?`,
       buttons: [
         {
           text: 'Cancel',
@@ -62,7 +62,7 @@ export class ThoughtsShowPage {
         {
           text: 'Delete',
           handler: () => {
-            this.thoughtsProvider.deleteThought(this.thoughtId).subscribe((data) => {
+            this.thoughtsProvider.deleteThought(this.entryId).subscribe((data) => {
               this.navCtrl.setRoot(HomePage, {
                 msg: data.message
               });
@@ -75,8 +75,8 @@ export class ThoughtsShowPage {
   }
 
   presentUpdateModal() {
-    let thought = { id: this.thoughtId, title: this.thoughtTitle, body: this.thoughtBody };
-    let updateModal = this.modalCtrl.create('UpdateThoughtModalPage', thought);
+    let entry = { id: this.entryId, title: this.entrytTitle, body: this.entryBody };
+    let updateModal = this.modalCtrl.create('UpdateThoughtModalPage', entry);
 
     updateModal.present();
   }

@@ -9,7 +9,7 @@ import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
   templateUrl: 'update-thought-modal.html',
 })
 export class UpdateThoughtModalPage {
-  thought = { title: this.navParams.get('title'), body: this.navParams.get('body') };
+  entry = { title: this.navParams.get('title'), body: this.navParams.get('body') };
   msg :any;
 
   constructor(
@@ -29,7 +29,7 @@ export class UpdateThoughtModalPage {
   }
 
   updateThought() {
-    this.thoughtsProvider.updateThought(this.navParams.get('id'), this.thought).subscribe((data) => {
+    this.thoughtsProvider.updateThought(this.navParams.get('id'), this.entry).subscribe((data) => {
       if (data.json().message) {
         this.msg = data.json().message;
       }
