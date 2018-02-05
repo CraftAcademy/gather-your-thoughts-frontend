@@ -92,7 +92,7 @@ export class HomePage {
   }
 
   getUser() {
-    return this.authenticationProvider.getUser();
+    return this.authenticationProvider.currentUser;
   }
 
 }
