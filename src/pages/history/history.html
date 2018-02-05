@@ -9,12 +9,12 @@
 
 
 <ion-content padding>
-<h4>Everything has a history, and so does your entries. What were you thinking?</h4>
+<h4>Everything has a history, and so does your thoughts. What were you thinking?</h4>
   <ion-item>
     <ion-label>Date</ion-label>
     <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="myDate"></ion-datetime>
   </ion-item>
-  <button ion-button (click)="dateEntries()" block>Find your entries!</button>
+  <button ion-button (click)="dateEntries()" block>Search</button>
 
   <ion-card margin *ngFor="let entry of entries"  (click)="navigateToEntry(entry.id)" class="{{ entry.attributes.sentiments[0].toLowerCase() }} sentiment">
     <ion-card-header>{{ entry.attributes.title }}</ion-card-header>

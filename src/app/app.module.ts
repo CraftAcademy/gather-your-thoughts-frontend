@@ -10,7 +10,7 @@ import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 import { SentimentsShowPage } from '../pages/sentiments-show/sentiments-show';
 import { EntriesShowPage } from '../pages/entries-show/entries-show';
-
+import { ChartsModule } from 'ng2-charts';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,7 +37,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     RouterModule,
-    HttpModule
+    HttpModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
