@@ -10,7 +10,7 @@ import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 })
 export class HistoryPage {
   myDate: any;
-  Entries: any;
+  entries: any;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public historyProvider: HistoryProvider) {
@@ -22,7 +22,7 @@ export class HistoryPage {
 
   dateEntries() {
     this.historyProvider.getDateEntries(this.myDate)
-      .subscribe(({ data }) => this.Entries = data);
+      .subscribe(({ data }) => this.entries = data);
   }
 
   navigateToEntry(entryId) {
