@@ -1,6 +1,6 @@
 {
   "name": "gather_your_thoughts_frontend",
-  "app_id": "",
+  "app_id": "b24bc40b",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

@@ -22,6 +22,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { LabelsProvider } from '../providers/labels/labels';
 import { HistoryProvider } from '../providers/history/history';
 import { SentimentsProvider } from '../providers/sentiments/sentiments';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     Angular2TokenService,
     LabelsProvider,
     HistoryProvider,
-    SentimentsProvider
+    SentimentsProvider,
+    AuthenticationProvider
   ]
 })
 export class AppModule {}
