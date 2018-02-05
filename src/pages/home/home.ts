@@ -11,6 +11,7 @@ import { EntriesShowPage } from "../entries-show/entries-show";
 
 
 export class HomePage {
+
   sentiments: any;
   entries: any;
   doughnutChartLabels:string[] = [];
@@ -37,6 +38,7 @@ export class HomePage {
         toast.present();
       }
 
+
     this.sentimentsProvider.getMonthSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       for (let sentiment of this.sentiments) {
@@ -49,7 +51,7 @@ export class HomePage {
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();
-    })
+    });
   }
 
   public chartClicked(e:any):void {
@@ -62,9 +64,6 @@ export class HomePage {
 
   presentEntryModal() {
     let entryModal = this.modalCtrl.create('EntryModalPage');
-    entryModal.onDidDismiss(() => {
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    });
     entryModal.present();
   }
 

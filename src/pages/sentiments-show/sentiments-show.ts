@@ -11,8 +11,8 @@ import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 export class SentimentsShowPage {
   sentimentId :any;
   sentimentName :any;
-  Entries :any;
-  EntryId :any;
+  entries :any;
+  entryId :any;
 
   constructor(
     public navCtrl: NavController,
@@ -28,13 +28,13 @@ export class SentimentsShowPage {
     }
 
     this.sentimentsProvider.getSentimentEntries(this.sentimentId).subscribe(({ data }) => {
-      this.Entries = data;
+      this.entries = data;
     });
   }
 
-  navigateToEntry(EntryId) {
+  navigateToEntry(entryId) {
     this.navCtrl.push(EntriesShowPage, {
-      id: EntryId
+      id: entryId
     });
   }
 

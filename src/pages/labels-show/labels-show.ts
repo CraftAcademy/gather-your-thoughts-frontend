@@ -11,7 +11,7 @@ import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 export class LabelsShowPage {
   labelId :any;
   labelName: any;
-  Entries :any;
+  entries :any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,7 +27,7 @@ export class LabelsShowPage {
     }
 
     this.labelsProvider.getLabelEntries(this.labelId).subscribe(({ data }) => {
-      this.Entries = data;
+      this.entries = data;
     });
   }
 

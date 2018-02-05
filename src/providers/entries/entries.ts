@@ -25,4 +25,8 @@ export class EntriesProvider {
   getRecentEntries() {
     return this._tokenService.get('entries').map(res => res.json());
   }
+
+  updateEntry(entryId, data) {
+    return this._tokenService.put(`entries/${entryId}`, data).map(data => data);
+  } 
 }

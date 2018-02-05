@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Entry</ion-title>
   </ion-navbar>
 
@@ -17,10 +20,11 @@
     </ion-list>
     <h4>Sentiments:</h4>
     <ion-list>
-      <li> {{ entrysentiment }} </li>
+      <li> {{ entrySentiment }} </li>
     </ion-list>
     <div>
       <button ion-button (click)="deletePopup()">Delete</button>
+      <button ion-button (click)="presentUpdateModal()">Edit</button>
     </div>
   </div>
 </ion-content>
