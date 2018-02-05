@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { App, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
-
+import { EntriesProvider } from '../../providers/entries/entries'
 import * as d3 from 'd3-selection';
 import * as d3Scale from "d3-scale";
 import * as d3Shape from "d3-shape";
+import { EntriesShowPage } from "../entries-show/entries-show";
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ export class HomePage {
   width: number;
   height: number;
   radius: number;
+  entries: any;
 
   arc: any;
   labelArc: any;
@@ -31,6 +33,7 @@ export class HomePage {
 
   constructor(public modalCtrl: ModalController,
               public sentimentsProvider: SentimentsProvider,
+              public entriesProvider: EntriesProvider,
               public navCtrl: NavController,
               public navParams: NavParams,
               private toastCtrl: ToastController,
@@ -46,7 +49,7 @@ export class HomePage {
       }
 
 
-    this.sentimentsProvider.getSentiments().subscribe((data) => {
+    this.sentimentsProvider.getMonthSentiments().subscribe((data) => {
       this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
       this.initSvg();
       this.drawPie();
@@ -54,11 +57,22 @@ export class HomePage {
     this.width = 900 - this.margin.left - this.margin.right ;
     this.height = 500 - this.margin.top - this.margin.bottom;
     this.radius = Math.min(this.width, this.height) / 2;
+
+    this.entriesProvider.getRecentEntries().subscribe(({data}) => {
+      this.entries = data.reverse();
+    });
   }
 
-  presentThoughtModal() {
-    let thoughtModal = this.modalCtrl.create('ThoughtModalPage');
-    thoughtModal.present();
+
+  presentEntryModal() {
+    let entryModal = this.modalCtrl.create('EntryModalPage');
+    entryModal.present();
+  }
+
+  navigateToEntry(entryId) {
+    this.navCtrl.push(EntriesShowPage, {
+      id: entryId
+    });
   }
 
   initSvg() {
@@ -87,6 +101,7 @@ export class HomePage {
       .attr('viewBox','0 0 '+Math.min(this.width,this.height)+' '+Math.min(this.width,this.height))
       .append("g")
       .attr("transform", "translate(" + Math.min(this.width,this.height) / 2 + "," + Math.min(this.width,this.height) / 2 + ")");
+
   }
 
   drawPie() {
@@ -104,6 +119,5 @@ export class HomePage {
       .attr("dy", ".35em")
       .text((d: any) => d.data.amount);
   }
-
 
 }

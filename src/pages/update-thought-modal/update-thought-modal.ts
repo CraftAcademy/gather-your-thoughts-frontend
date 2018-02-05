@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
-import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
+import { EntriesProvider } from '../../providers/entries/entries';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({
@@ -10,34 +10,35 @@ import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 })
 export class UpdateThoughtModalPage {
   entry = { title: this.navParams.get('title'), body: this.navParams.get('body') };
-  msg :any;
 
   constructor(
     private view: ViewController,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public thoughtsProvider: ThoughtsProvider,
+    public entriesProvider: EntriesProvider,
     public appCtrl: App
   ) {
   }
 
   closeModal() {
     this.view.dismiss();
-    this.appCtrl.getRootNav().setRoot(ThoughtsShowPage, {
-      id: this.navParams.get('id'), msg: this.msg
+  }
+
+  presentToast(msg) {
+    this.appCtrl.getRootNav().setRoot(EntriesShowPage, {
+      id: this.navParams.get('id'), msg: msg
     });
   }
 
-  updateThought() {
-    this.thoughtsProvider.updateThought(this.navParams.get('id'), this.entry).subscribe((data) => {
-      if (data.json().message) {
-        this.msg = data.json().message;
-      }
-      if (data.json().error) {
-        this.msg = data.json().error;
-      }
-      this.closeModal();
-    });
+  updateEntry() {
+    this.entriesProvider.updateEntry(this.navParams.get('id'), this.entry)
+    .subscribe(
+      data => {
+        this.closeModal();
+        this.presentToast(data.json().message);
+    },
+      error => this.presentToast(error.json().error[0])
+    );
   }
 
   ionViewDidLoad() {

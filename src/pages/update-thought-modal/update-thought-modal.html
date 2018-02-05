@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Update Thought</ion-title>
+    <ion-title>Update Entry</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -11,15 +11,15 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="updateThought()">
+  <form (ngSubmit)="updateEntry()">
     <ion-item>
       <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="thought.title" value="{{ thought.title }}" name="title"> {{ title }}</ion-input>
+      <ion-input type="text" [(ngModel)]="entry.title" value="{{ entry.title }}" name="title"> {{ title }}</ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Body</ion-label>
-      <ion-textarea [(ngModel)]="thought.body" value="{{ thought.body }}" name="body"></ion-textarea>
+      <ion-textarea [(ngModel)]="entry.body" value="{{ entry.body }}" name="body"></ion-textarea>
     </ion-item>
-    <button ion-button type="submit" block>Update Thought</button>
+    <button ion-button type="submit" block>Update Entry</button>
   </form>
 </ion-content>

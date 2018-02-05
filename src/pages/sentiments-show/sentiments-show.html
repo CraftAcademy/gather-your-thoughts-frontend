@@ -1,13 +1,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ sentimentName }} Thoughts</ion-title>
+    <ion-title>{{ sentimentName }} entries</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding class="{{ sentimentName.toLowerCase() }}">
-  <ion-card *ngFor="let thought of thoughts" (click)="navigateToThought(thought.id)">
-    <ion-card-header>{{ thought.attributes.title }}</ion-card-header>
+  <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
+    <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
   </ion-card>
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
-import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({
@@ -11,8 +11,8 @@ import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 export class SentimentsShowPage {
   sentimentId :any;
   sentimentName :any;
-  thoughts :any;
-  thoughtId :any;
+  entries :any;
+  entryId :any;
 
   constructor(
     public navCtrl: NavController,
@@ -27,14 +27,14 @@ export class SentimentsShowPage {
       this.sentimentName = this.navParams.get('name');
     }
 
-    this.sentimentsProvider.getSentimentThoughts(this.sentimentId).subscribe(({ data }) => {
-      this.thoughts = data;
+    this.sentimentsProvider.getSentimentEntries(this.sentimentId).subscribe(({ data }) => {
+      this.entries = data;
     });
   }
 
-  navigateToThought(thoughtId) {
-    this.navCtrl.push(ThoughtsShowPage, {
-      id: thoughtId
+  navigateToEntry(entryId) {
+    this.navCtrl.push(EntriesShowPage, {
+      id: entryId
     });
   }
 

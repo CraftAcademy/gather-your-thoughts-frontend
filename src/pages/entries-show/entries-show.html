@@ -4,23 +4,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Thought</ion-title>
+    <ion-title>Entry</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div class="thought">
+  <div class="entry">
     <h1> {{ entryTitle }}</h1>
     <p> {{ entryBody }} </p>
     <h4>Labels:</h4>
-    <ion-list *ngFor="let label of thoughtLabels">
+    <ion-list *ngFor="let label of entryLabels">
       <li> {{ label }} </li>
     </ion-list>
     <h4>Sentiments:</h4>
     <ion-list>
-      <li> {{ thoughtSentiment }} </li>
+      <li> {{ entrySentiment }} </li>
     </ion-list>
     <div>
       <button ion-button (click)="deletePopup()">Delete</button>

@@ -1,30 +1,28 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController } from 'ionic-angular';
-import { ThoughtsProvider } from '../../providers/thoughts/thoughts';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, ToastController } from 'ionic-angular';
+import { EntriesProvider } from '../../providers/entries/entries';
 import { HomePage } from '../../pages/home/home';
 import { UpdateThoughtModalPage } from '../../pages/update-thought-modal/update-thought-modal';
 
 @IonicPage()
 @Component({
-  selector: 'page-thoughts-show',
-  templateUrl: 'thoughts-show.html',
+  selector: 'page-entries-show',
+  templateUrl: 'entries-show.html',
 })
-export class ThoughtsShowPage {
+export class EntriesShowPage {
   entryId :any;
   entryTitle :any;
   entryBody :any;
-  thoughtLabels :any;
-  thoughtSentiment: any;
-  thought = {};
+  entryLabels :any;
+  entrySentiment: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public thoughtsProvider: ThoughtsProvider,
-    public modalCtrl: ModalController,
+    public entriesProvider: EntriesProvider,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController
-
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController
   ) {
     if (this.navParams.get('id')) {
       this.entryId = this.navParams.get('id');
@@ -39,18 +37,18 @@ export class ThoughtsShowPage {
       toast.present();
     }
 
-    this.thoughtsProvider.getThought(this.thoughtId).subscribe(({ data }) => {
+    this.entriesProvider.getEntry(this.entryId).subscribe(({ data }) => {
       this.entryTitle = data.attributes.title;
       this.entryBody = data.attributes.body;
-      this.thoughtLabels = data.attributes.labels;
-      this.thoughtSentiment = data.attributes.sentiments[0];
+      this.entryLabels = data.attributes.labels;
+      this.entrySentiment = data.attributes.sentiments[0];
     });
   }
 
   deletePopup() {
     let alert = this.alertCtrl.create({
       title: 'Confirm deletion',
-      message: `Do you wish to delete ${this.entryTitle} thought?`,
+      message: `Do you wish to delete ${this.entryTitle} entry?`,
       buttons: [
         {
           text: 'Cancel',
@@ -62,7 +60,7 @@ export class ThoughtsShowPage {
         {
           text: 'Delete',
           handler: () => {
-            this.thoughtsProvider.deleteThought(this.entryId).subscribe((data) => {
+            this.entriesProvider.deleteEntry(this.entryId).subscribe((data) => {
               this.navCtrl.setRoot(HomePage, {
                 msg: data.message
               });
@@ -75,14 +73,14 @@ export class ThoughtsShowPage {
   }
 
   presentUpdateModal() {
-    let entry = { id: this.entryId, title: this.entrytTitle, body: this.entryBody };
+    let entry = { id: this.entryId, title: this.entryTitle, body: this.entryBody };
     let updateModal = this.modalCtrl.create('UpdateThoughtModalPage', entry);
 
     updateModal.present();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ThoughtsShowPage');
+    console.log('ionViewDidLoad EntriesShowPage');
   }
 
 }
