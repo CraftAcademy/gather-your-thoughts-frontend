@@ -31,7 +31,7 @@ export class EntriesShowPage {
     if (this.navParams.get('msg')) {
       let toast = this.toastCtrl.create({
         message: this.navParams.get('msg'),
-        duration: 2000,
+        duration: 1500,
         position: 'top'
       });
       toast.present();
