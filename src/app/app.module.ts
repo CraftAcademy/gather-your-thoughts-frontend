@@ -10,6 +10,7 @@ import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 import { SentimentsShowPage } from '../pages/sentiments-show/sentiments-show';
 import { EntriesShowPage } from '../pages/entries-show/entries-show';
+import { ActivityPage } from '../pages/activity/activity';
 import { ChartsModule } from 'ng2-charts';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -31,7 +32,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     HistoryPage,
     SentimentsIndexPage,
     SentimentsShowPage,
-    EntriesShowPage
+    EntriesShowPage,
+    ActivityPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     HistoryPage,
     SentimentsIndexPage,
     SentimentsShowPage,
-    EntriesShowPage
+    EntriesShowPage,
+    ActivityPage
   ],
   providers: [
     StatusBar,

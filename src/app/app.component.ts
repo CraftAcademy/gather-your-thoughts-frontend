@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
+import { ActivityPage } from '../pages/activity/activity';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -34,7 +36,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Labels', component: LabelsIndexPage },
       { title: 'History', component: HistoryPage },
-      { title: 'Sentiments', component: SentimentsIndexPage }
+      { title: 'Sentiments', component: SentimentsIndexPage },
+      { title: 'Activity', component: ActivityPage }
+
     ];
 
   }
