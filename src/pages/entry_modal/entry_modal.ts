@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
+import { App, IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 import { LabelsProvider } from '../../providers/labels/labels';
+import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,8 @@ export class EntryModalPage {
               public navCtrl: NavController,
               public entriesProvider: EntriesProvider,
               public labelsProvider: LabelsProvider,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              public appCtrl: App) {
 
   this.labelsProvider.getLabels().subscribe((data) => {
     this.labels = data.labels;
@@ -53,6 +55,7 @@ export class EntryModalPage {
 
   closeModal() {
     this.view.dismiss();
+    this.appCtrl.getRootNav().setRoot(HomePage);
   }
 
   getErrorMessageFrom(error) {
