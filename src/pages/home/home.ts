@@ -16,10 +16,7 @@ export class HomePage {
   doughnutChartLabels:string[] = [];
   doughnutChartData:number[] = [];
   doughnutChartColors:any[] = [{
-    fillColor: 'rgba(47, 132, 71, 0.8)',
-    strokeColor: 'rgba(47, 132, 71, 0.8)',
-    highlightFill: 'rgba(47, 132, 71, 0.8)',
-    highlightStroke: 'rgba(47, 132, 71, 0.8)'
+    backgroundColor:["#FCAE3B", "#89D0FF", "#69FB5F", "#F6FE5C", "#FD6153"]
   }];
   doughnutChartType:string = 'doughnut';
   isDataAvailable:boolean = false;
