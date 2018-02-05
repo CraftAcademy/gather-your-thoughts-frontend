@@ -17,7 +17,7 @@ export class HomePage {
   doughnutChartLabels:string[] = [];
   doughnutChartData:number[] = [];
   doughnutChartColors:any[] = [{
-    backgroundColor:["#FCAE3B", "#89D0FF", "#69FB5F", "#F6FE5C", "#FD6153"]
+    backgroundColor:[]
   }];
   doughnutChartType:string = 'doughnut';
   isDataAvailable:boolean = false;
@@ -44,8 +44,24 @@ export class HomePage {
       for (let sentiment of this.sentiments) {
         this.doughnutChartLabels.push(sentiment.sentiment);
         this.doughnutChartData.push(sentiment.amount);
+        switch(true) {
+          case(sentiment.sentiment == "Happy"):
+            this.doughnutChartColors[0].backgroundColor.push("#FCAE3B");
+            break;
+          case(sentiment.sentiment == "Sad"):
+            this.doughnutChartColors[0].backgroundColor.push("#89D0FF");
+            break;
+          case(sentiment.sentiment == "Angry"):
+            this.doughnutChartColors[0].backgroundColor.push("#FD6153");
+            break;
+          case(sentiment.sentiment == "Excited"):
+            this.doughnutChartColors[0].backgroundColor.push("#69FB5F");
+            break;
+          default:
+            this.doughnutChartColors[0].backgroundColor.push("#F6FE5C");
+            break;
+        }
         this.isDataAvailable = true;
-
       }
     });
 
