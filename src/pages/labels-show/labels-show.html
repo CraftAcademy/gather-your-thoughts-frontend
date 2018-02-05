@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-  <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)" class="{{ entry.attributes.sentiments[0].toLowerCase() }} sentiment">
+  <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
     <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
   </ion-card>
 </ion-content>
