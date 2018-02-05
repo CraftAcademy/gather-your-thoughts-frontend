@@ -3,6 +3,7 @@ import { ModalController, NavController, NavParams, ToastController } from 'ioni
 import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 import { EntriesProvider } from '../../providers/entries/entries'
 import { EntriesShowPage } from "../entries-show/entries-show";
+import { AuthenticationProvider} from "../../providers/authentication/authentication";
 
 @Component({
   selector: 'page-home',
@@ -23,6 +24,7 @@ export class HomePage {
   isDataAvailable:boolean = false;
 
   constructor(public modalCtrl: ModalController,
+              public authenticationProvider: AuthenticationProvider,
               public sentimentsProvider: SentimentsProvider,
               public entriesProvider: EntriesProvider,
               public navCtrl: NavController,
@@ -87,6 +89,10 @@ export class HomePage {
     this.navCtrl.push(EntriesShowPage, {
       id: entryId
     });
+  }
+
+  getUser() {
+    return this.authenticationProvider.getUser();
   }
 
 }
