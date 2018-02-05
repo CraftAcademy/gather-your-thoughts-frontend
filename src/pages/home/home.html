@@ -14,7 +14,15 @@
     <ion-card-header>Create entry</ion-card-header>
   </ion-card>
   <h5> Your entries in the last month. How have you been feeling?</h5>
-  <div id="pieChart"></div>
+  <div style="display: block">
+    <canvas baseChart *ngIf="isDataAvailable"
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+            [colors]="doughnutChartColors"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
   <h6>Your most recent entries</h6>
   <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
     <ion-card-header> {{entry.attributes.title}} </ion-card-header>
