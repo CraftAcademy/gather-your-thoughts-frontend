@@ -13,7 +13,7 @@ export class SentimentsProvider {
       .map(res => res.json());
   }
 
-  getSentimentThoughts(sentimentId) {
+  getSentimentEntries(sentimentId) {
     return this._tokenService.get(`sentiments/${sentimentId}`)
       .map(res => res.json());
   }

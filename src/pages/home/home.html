@@ -8,15 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Gather Your Thoughts</h1>
-  <h6>You have thoughts, we gather them!</h6>
-  <ion-card (click)="presentThoughtModal()">
-    <ion-card-header>Create Thought</ion-card-header>
+  <h1>Gather Your entries</h1>
+  <h6>You have entries, we gather them!</h6>
+  <ion-card (click)="presentEntryModal()">
+    <ion-card-header>Create entry</ion-card-header>
   </ion-card>
-  <h5> Your thoughts in the last month. How have you been feeling?</h5>
+  <h5> Your entries in the last month. How have you been feeling?</h5>
   <div id="pieChart"></div>
-  <h6>Your most recent thoughts</h6>
-  <ion-card *ngFor="let thought of thoughts" (click)="navigateToThought(thought.id)">
-    <ion-card-header> {{thought.attributes.title}} </ion-card-header>
+  <h6>Your most recent entries</h6>
+  <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
+    <ion-card-header> {{entry.attributes.title}} </ion-card-header>
   </ion-card>
 </ion-content>

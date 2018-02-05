@@ -9,12 +9,12 @@ import { LabelsShowPage } from '../pages/labels-show/labels-show';
 import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 import { SentimentsShowPage } from '../pages/sentiments-show/sentiments-show';
-import { ThoughtsShowPage } from '../pages/thoughts-show/thoughts-show';
+import { EntriesShowPage } from '../pages/entries-show/entries-show';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ThoughtsProvider } from '../providers/thoughts/thoughts';
+import { EntriesProvider } from '../providers/entries/entries';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
@@ -31,7 +31,7 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     HistoryPage,
     SentimentsIndexPage,
     SentimentsShowPage,
-    ThoughtsShowPage
+    EntriesShowPage
   ],
   imports: [
     BrowserModule,
@@ -48,13 +48,13 @@ import { SentimentsProvider } from '../providers/sentiments/sentiments';
     HistoryPage,
     SentimentsIndexPage,
     SentimentsShowPage,
-    ThoughtsShowPage
+    EntriesShowPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ThoughtsProvider,
+    EntriesProvider,
     Angular2TokenService,
     LabelsProvider,
     HistoryProvider,

@@ -8,7 +8,7 @@ export class HistoryProvider {
 
   constructor(private _tokenService: Angular2TokenService) {}
 
-  getDateThoughts(date) {
+  getDateEntries(date) {
     return this._tokenService.get(`history?date=${date}`)
       .map(res => res.json());
   }

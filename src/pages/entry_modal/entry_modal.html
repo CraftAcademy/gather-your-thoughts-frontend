@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Create Thought</ion-title>
+    <ion-title>Create Entry</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">Close</button>
     </ion-buttons>
@@ -11,18 +11,18 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="createThought()">
+  <form (ngSubmit)="createEntry()">
     <ion-item>
       <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="thought.title" name="title"></ion-input>
+      <ion-input type="text" [(ngModel)]="entry.title" name="title"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Body</ion-label>
-      <ion-textarea [(ngModel)]="thought.body" name="body"></ion-textarea>
+      <ion-textarea [(ngModel)]="entry.body" name="body"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="count">
       <ion-label>Choose one of {{ count }} previous labels</ion-label>
-      <ion-select [(ngModel)]="thought.label_list" name="label_list" (ionChange)="previousLabelSet()">
+      <ion-select [(ngModel)]="entry.label_list" name="label_list" (ionChange)="previousLabelSet()">
         <ion-option *ngFor="let label of labels">{{ label.name }}</ion-option>
       </ion-select>
     </ion-item>
@@ -32,7 +32,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Sentiment</ion-label>
-      <ion-select [(ngModel)]="thought.sentiment_list" name="sentiment_list">
+      <ion-select [(ngModel)]="entry.sentiment_list" name="sentiment_list">
         <ion-option value="Happy">Happy</ion-option>
         <ion-option value="Sad">Sad</ion-option>
         <ion-option value="Angry">Angry</ion-option>
@@ -40,6 +40,6 @@
         <ion-option value="Neutral">Neutral</ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button type="submit" block>Create Thought</button>
+    <button ion-button type="submit" block>Create Entry</button>
   </form>
 </ion-content>

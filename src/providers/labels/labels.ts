@@ -13,7 +13,7 @@ export class LabelsProvider {
           .map(res => res.json());
   }
 
-  getLabelThoughts(labelId) {
+  getLabelEntries(labelId) {
     return this._tokenService.get(`labels/${labelId}`)
             .map(res => res.json());
   }

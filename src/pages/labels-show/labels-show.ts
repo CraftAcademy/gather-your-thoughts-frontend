@@ -1,7 +1,7 @@
 import { LabelsProvider } from '../../providers/labels/labels';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({
@@ -11,7 +11,7 @@ import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 export class LabelsShowPage {
   labelId :any;
   labelName: any;
-  thoughts :any;
+  Entries :any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,14 +26,14 @@ export class LabelsShowPage {
       this.labelName = this.navParams.get('name');
     }
 
-    this.labelsProvider.getLabelThoughts(this.labelId).subscribe(({ data }) => {
-      this.thoughts = data;
+    this.labelsProvider.getLabelEntries(this.labelId).subscribe(({ data }) => {
+      this.Entries = data;
     });
   }
 
-  navigateToThought(thoughtId) {
-    this.navCtrl.push(ThoughtsShowPage, {
-      id: thoughtId
+  navigateToEntry(EntryId) {
+    this.navCtrl.push(EntriesShowPage, {
+      id: EntryId
     });
   }
 

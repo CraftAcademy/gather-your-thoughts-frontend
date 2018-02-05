@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HistoryProvider } from '../../providers/history/history';
-import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
+import { EntriesShowPage } from '../../pages/entries-show/entries-show';
 
 @IonicPage()
 @Component({
@@ -10,7 +10,7 @@ import { ThoughtsShowPage } from '../../pages/thoughts-show/thoughts-show';
 })
 export class HistoryPage {
   myDate: any;
-  thoughts: any;
+  Entries: any;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public historyProvider: HistoryProvider) {
@@ -20,14 +20,14 @@ export class HistoryPage {
     console.log('ionViewDidLoad HistoryPage');
   }
 
-  dateThoughts() {
-    this.historyProvider.getDateThoughts(this.myDate)
-      .subscribe(({ data }) => this.thoughts = data);
+  dateEntries() {
+    this.historyProvider.getDateEntries(this.myDate)
+      .subscribe(({ data }) => this.Entries = data);
   }
 
-  navigateToThought(thoughtId) {
-    this.navCtrl.push(ThoughtsShowPage, {
-      id: thoughtId
+  navigateToEntry(entryId) {
+    this.navCtrl.push(EntriesShowPage, {
+      id: entryId
     });
   }
 }
