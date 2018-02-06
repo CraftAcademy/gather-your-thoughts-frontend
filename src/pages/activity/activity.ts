@@ -20,13 +20,13 @@ export class ActivityPage {
   barChartLegend:boolean = true;
   barChartColors: any [] =[{ backgroundColor:'#89D0FF' }];
   barChartData:any[] = [
-  {data: [], label: 'Thoughts'}
+  {data: [], label: 'Entries'}
 ];
 
-  lineChartData:Array<any> = [
-    [65, 59, 80, 81, 56, 55, 40]
+  lineChartData:any[] = [
+    {data: [], label: 'Entries'}
   ];
-  lineChartLabels:Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  lineChartLabels:Array<any> = [];
   lineChartType:string = 'line';
 
   constructor(
@@ -35,13 +35,16 @@ export class ActivityPage {
     public entriesProvider: EntriesProvider
   ) {
     this.entriesProvider.getWeeklyThoughts().subscribe((data) => {
-      this.entries = data.week;
-      for (let entry of this.entries) {
-        this.barChartLabels.push(this.weekdays[new Date(entry.date).getDay()]);
-        this.barChartData[0].data.push(entry.amount);
+      this.entries = data;
+      for (let day of this.entries.week) {
+        this.barChartLabels.push(this.weekdays[new Date(day.date).getDay()]);
+        this.barChartData[0].data.push(day.amount);
+      }
+      for (let month of this.entries.months) {
+        this.lineChartLabels.push(month.month);
+        this.lineChartData[0].data.push(month.amount);
       }
       this.isDataAvailable = true;
-      console.log(this.barChartLabels);
     });
   }
 
@@ -52,10 +55,6 @@ export class ActivityPage {
 
   chartHovered(e:any):void {
     console.log(e);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivityPage');
   }
 
 }
