@@ -1,5 +1,5 @@
 <ion-header>
-
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Raleway" rel="stylesheet">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -11,15 +11,18 @@
 
 
 <ion-content padding>
-  <div style="display: block">
-      <canvas baseChart *ngIf="isDataAvailable"
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
-              [colors]="barChartColors"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+  <div class='bar-graph'>
+    <h1 class='graph-header'>Your entries from the past week</h1>
+    <div style="display: block">
+        <canvas baseChart *ngIf="isDataAvailable"
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                [colors]="barChartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
   </div>
 </ion-content>
