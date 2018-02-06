@@ -126,9 +126,9 @@ export class MyApp {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
           this.redirectToHome();
-          this.presentToast(`Successfully logged in as ${this.currentUser.email}`);
+          this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
         },
-        err => this.presentToast(err.json().errors[0])
+        err => this.presentToast(err.json().errors[0], 2200)
       );
   }
 
@@ -140,8 +140,9 @@ export class MyApp {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
           this.redirectToHome();
+          this.presentToast(`Welcome ${this.currentUser.email}! You are now logged in as well.`, 2500)
         },
-        err => console.error('error')
+        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
       );
   }
 
@@ -161,10 +162,10 @@ export class MyApp {
     this.appCtrl.getRootNav().setRoot(HomePage);
   }
 
-  presentToast(msg) {
+  presentToast(msg, duration) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 1500,
+      duration: duration,
       position: 'top'
     });
     toast.present();
