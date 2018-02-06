@@ -23,6 +23,12 @@ export class ActivityPage {
   {data: [], label: 'Thoughts'}
 ];
 
+  lineChartData:Array<any> = [
+    [65, 59, 80, 81, 56, 55, 40]
+  ];
+  lineChartLabels:Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  lineChartType:string = 'line';
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
