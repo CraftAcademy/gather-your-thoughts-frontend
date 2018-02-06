@@ -6,7 +6,7 @@
 
 </ion-header>
 
-<ion-content padding class="{{ sentimentName.toLowerCase() }}">
+<ion-content padding>
   <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
     <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
   </ion-card>

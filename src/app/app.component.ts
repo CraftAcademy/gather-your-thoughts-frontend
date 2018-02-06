@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { App, Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
@@ -8,7 +8,7 @@ import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
 import { ActivityPage } from '../pages/activity/activity';
-import {AuthenticationProvider} from "../providers/authentication/authentication";
+import { AuthenticationProvider } from "../providers/authentication/authentication";
 
 
 @Component({
@@ -27,7 +27,8 @@ export class MyApp {
               public splashScreen: SplashScreen,
               private _tokenService: Angular2TokenService,
               public alertCtrl: AlertController,
-              public authenticationProvider: AuthenticationProvider) {
+              public authenticationProvider: AuthenticationProvider,
+              public appCtrl: App) {
 
     this.initializeApp();
 
@@ -123,6 +124,7 @@ export class MyApp {
         res => {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
+          this.redirectToHome();
         },
         err => console.error('error')
       );
@@ -135,6 +137,7 @@ export class MyApp {
         res => {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
+          this.redirectToHome();
         },
         err => console.error('error')
       );
@@ -143,9 +146,17 @@ export class MyApp {
   logout() {
     this._tokenService
       .signOut()
-      .subscribe(res => this.authenticationProvider.currentUser = false,
+      .subscribe(
+        res => {
+          this.authenticationProvider.currentUser = false;
+          this.redirectToHome();
+        },
         err => console.error('error'));
     this.currentUser = undefined;
+  }
+
+  redirectToHome() {
+    this.appCtrl.getRootNav().setRoot(HomePage);
   }
 
   initializeApp() {
