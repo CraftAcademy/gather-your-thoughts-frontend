@@ -28,5 +28,9 @@ export class EntriesProvider {
 
   updateEntry(entryId, data) {
     return this._tokenService.put(`entries/${entryId}`, data).map(data => data);
-  } 
+  }
+
+  getWeeklyThoughts() {
+    return this._tokenService.get('activity').map(res => res.json());
+  }
 }
