@@ -11,8 +11,7 @@
 
 
 <ion-content padding>
-  <ion-card margin *ngFor="let sentiment of sentiments" (click)="navigateToSentiment(sentiment.id, sentiment.name)">
+  <ion-card margin *ngFor="let sentiment of sentiments" (click)="navigateToSentiment(sentiment.id, sentiment.name)" class="{{sentiment.name.toLowerCase()}} card">
     <ion-card-header>{{ sentiment.name }} ({{sentiment.taggings_count}})</ion-card-header>
-    <ion-icon name="heart"></ion-icon>
   </ion-card>
 </ion-content>
