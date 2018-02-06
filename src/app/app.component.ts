@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Nav, Platform, AlertController } from 'ionic-angular';
+import { App, Nav, Platform, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Angular2TokenService } from 'angular2-token';
@@ -28,7 +28,8 @@ export class MyApp {
               private _tokenService: Angular2TokenService,
               public alertCtrl: AlertController,
               public authenticationProvider: AuthenticationProvider,
-              public appCtrl: App) {
+              public appCtrl: App,
+              public toastCtrl: ToastController) {
 
     this.initializeApp();
 
@@ -125,8 +126,9 @@ export class MyApp {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
           this.redirectToHome();
+          this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
         },
-        err => console.error('error')
+        err => this.presentToast(err.json().errors[0], 2200)
       );
   }
 
@@ -138,8 +140,9 @@ export class MyApp {
           this.currentUser = res.json().data;
           this.authenticationProvider.currentUser = true;
           this.redirectToHome();
+          this.presentToast(`Welcome ${this.currentUser.email}! You are now logged in as well.`, 2500)
         },
-        err => console.error('error')
+        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
       );
   }
 
@@ -157,6 +160,15 @@ export class MyApp {
 
   redirectToHome() {
     this.appCtrl.getRootNav().setRoot(HomePage);
+  }
+
+  presentToast(msg, duration) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: duration,
+      position: 'top'
+    });
+    toast.present();
   }
 
   initializeApp() {

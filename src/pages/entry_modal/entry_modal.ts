@@ -44,10 +44,10 @@ export class EntryModalPage {
     }
   }
 
-  presentToast(msg) {
+  presentToast(msg, duration) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 1500,
+      duration: duration,
       position: 'top'
     });
     toast.present();
@@ -66,10 +66,17 @@ export class EntryModalPage {
     this.entriesProvider.saveEntry(this.entry)
     .subscribe(
       data => {
-        this.presentToast("Entry was successfully created.");
+        this.presentToast("Entry was successfully created.", 2000);
         this.closeModal();
     },
-      error => this.presentToast(this.getErrorMessageFrom(error))
+      err => {
+        if (err.json().status == 400 || err.json().error.length == 4) {
+          this.presentToast("No fields can't be blank", 2000)
+        }
+        else {
+          this.presentToast(err.json().error.join(', '), 2500)
+        }
+      }
     )
   }
 

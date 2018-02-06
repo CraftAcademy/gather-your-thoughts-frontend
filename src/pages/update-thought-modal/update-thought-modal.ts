@@ -37,7 +37,7 @@ export class UpdateThoughtModalPage {
         this.closeModal();
         this.presentToast(data.json().message);
     },
-      error => this.presentToast(error.json().error[0])
+      error => this.presentToast(error.json().error.join(', '))
     );
   }
 

@@ -13,7 +13,7 @@ export class EntriesShowPage {
   entryId :any;
   entryTitle :any;
   entryBody :any;
-  entryLabels :any;
+  entryLabel :any;
   entrySentiment: any;
   entryDate: any;
 
@@ -41,7 +41,7 @@ export class EntriesShowPage {
     this.entriesProvider.getEntry(this.entryId).subscribe(({ data }) => {
       this.entryTitle = data.attributes.title;
       this.entryBody = data.attributes.body;
-      this.entryLabels = data.attributes.labels;
+      this.entryLabel = data.attributes.labels[0];
       this.entrySentiment = data.attributes.sentiments[0];
       this.entryDate = data.attributes.date;
     });
