@@ -26,7 +26,7 @@
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
       <h6>Your most recent entries</h6>
-      <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
+      <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)" class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
         <ion-card-header> {{entry.attributes.title}}</ion-card-header>
       </ion-card>
     </div>

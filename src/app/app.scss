@@ -15,22 +15,27 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 .happy {
-  background-color: #FF9900;
+  border-right: 7px solid #FCAE3B;
 }
-
 .sad {
-  background-color: lightBlue;
-}
-
-.excited {
-  background-color: lightgreen;
+  border-right: 7px solid #89D0FF;
 }
 
 .angry {
-  background-color: #DC3912;
+  border-right: 7px solid #FD6153;
 }
 
-.sentiment {
-  border: 1px solid black;
-  border-radius: 4px;
+.neutral {
+  border-right: 7px solid #F6FE5C;
+}
+.excited {
+  border-right: 7px solid #69FB5F;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#logout {
+  position: absolute;
+  bottom: 0;
 }

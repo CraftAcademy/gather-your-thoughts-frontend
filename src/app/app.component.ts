@@ -19,7 +19,7 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ title: string, component: any, icon: any }>;
   currentUser: any;
 
   constructor(public platform: Platform,
@@ -35,11 +35,11 @@ export class MyApp {
       apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
     });
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Labels', component: LabelsIndexPage },
-      { title: 'History', component: HistoryPage },
-      { title: 'Sentiments', component: SentimentsIndexPage },
-      { title: 'Activity', component: ActivityPage }
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'Labels', component: LabelsIndexPage, icon: 'bookmark' },
+      { title: 'History', component: HistoryPage, icon: 'book' },
+      { title: 'Sentiments', component: SentimentsIndexPage, icon: 'happy' },
+      { title: 'Activity', component: ActivityPage, icon: 'pulse' }
 
     ];
 
