@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
 import { SentimentsIndexPage } from '../pages/sentiments-index/sentiments-index';
+import { ActivityPage } from '../pages/activity/activity';
+import {AuthenticationProvider} from "../providers/authentication/authentication";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -16,14 +19,15 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any, icon: any }>;
   currentUser: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               private _tokenService: Angular2TokenService,
-              public alertCtrl: AlertController ) {
+              public alertCtrl: AlertController,
+              public authenticationProvider: AuthenticationProvider) {
 
     this.initializeApp();
 
@@ -31,10 +35,12 @@ export class MyApp {
       apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
     });
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Labels', component: LabelsIndexPage },
-      { title: 'History', component: HistoryPage },
-      { title: 'Sentiments', component: SentimentsIndexPage }
+      { title: 'Home', component: HomePage, icon: 'home' },
+      { title: 'Labels', component: LabelsIndexPage, icon: 'bookmark' },
+      { title: 'History', component: HistoryPage, icon: 'book' },
+      { title: 'Sentiments', component: SentimentsIndexPage, icon: 'happy' },
+      { title: 'Activity', component: ActivityPage, icon: 'pulse' }
+
     ];
 
   }
@@ -114,7 +120,10 @@ export class MyApp {
     this._tokenService
       .signIn(credentials)
       .subscribe(
-        res => (this.currentUser = res.json().data),
+        res => {
+          this.currentUser = res.json().data;
+          this.authenticationProvider.currentUser = true;
+        },
         err => console.error('error')
       );
   }
@@ -123,7 +132,10 @@ export class MyApp {
     this._tokenService
       .registerAccount(credentials)
       .subscribe(
-        res =>  (this.currentUser = res.json().data),
+        res => {
+          this.currentUser = res.json().data;
+          this.authenticationProvider.currentUser = true;
+        },
         err => console.error('error')
       );
   }
@@ -131,7 +143,8 @@ export class MyApp {
   logout() {
     this._tokenService
       .signOut()
-      .subscribe(res => console.log(res), err => console.error('error'));
+      .subscribe(res => this.authenticationProvider.currentUser = false,
+        err => console.error('error'));
     this.currentUser = undefined;
   }
 

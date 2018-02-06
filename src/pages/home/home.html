@@ -8,23 +8,36 @@
 </ion-header>
 
 <ion-content padding>
-  <h1>Gather Your Thoughts</h1>
-  <h6>Your personal smart journal</h6>
-  <ion-card (click)="presentEntryModal()">
-    <ion-card-header>Create entry</ion-card-header>
-  </ion-card>
-  <h5> Your entries in the last month. How have you been feeling?</h5>
-  <div style="display: block">
-    <canvas baseChart *ngIf="isDataAvailable"
-            [data]="doughnutChartData"
-            [labels]="doughnutChartLabels"
-            [chartType]="doughnutChartType"
-            [colors]="doughnutChartColors"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+  <div *ngIf="getUser()">
+    <h1>Gather Your Thoughts</h1>
+    <h6>Your personal smart journal</h6>
+    <ion-card (click)="presentEntryModal()">
+      <ion-card-header>Create entry</ion-card-header>
+    </ion-card>
+    <div *ngIf="isDataAvailable">
+      <h5> Your entries in the last month. How have you been feeling?</h5>
+      <div style="display: block">
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                [colors]="doughnutChartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <h6>Your most recent entries</h6>
+      <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)" class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
+        <ion-card-header> {{entry.attributes.title}}</ion-card-header>
+      </ion-card>
+    </div>
   </div>
-  <h6>Your most recent entries</h6>
-  <ion-card *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)">
-    <ion-card-header> {{entry.attributes.title}} </ion-card-header>
-  </ion-card>
+  <div *ngIf="!getUser()">
+    <h1>Gather Your Thoughts</h1>
+    <h6>Your personal smart journal</h6>
+    <ion-card padding>
+      <p>Welcome to your new place for journalkeeping. If you have ideas, reflections or just want to write stuff down
+        this is the place to do it </p>
+      <strong>Sign up or Login to Continue</strong>
+    </ion-card>
+  </div>
 </ion-content>
