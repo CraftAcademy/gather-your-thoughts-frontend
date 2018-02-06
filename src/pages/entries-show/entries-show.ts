@@ -15,6 +15,7 @@ export class EntriesShowPage {
   entryBody :any;
   entryLabel :any;
   entrySentiment: any;
+  entryDate: any;
 
   constructor(
     public navCtrl: NavController,
@@ -42,6 +43,7 @@ export class EntriesShowPage {
       this.entryBody = data.attributes.body;
       this.entryLabel = data.attributes.labels[0];
       this.entrySentiment = data.attributes.sentiments[0];
+      this.entryDate = data.attributes.date;
     });
   }
 
