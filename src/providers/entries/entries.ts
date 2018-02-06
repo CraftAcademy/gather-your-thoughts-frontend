@@ -28,5 +28,5 @@ export class EntriesProvider {
 
   updateEntry(entryId, data) {
     return this._tokenService.put(`entries/${entryId}`, data).map(data => data);
-  } 
+  }
 }
