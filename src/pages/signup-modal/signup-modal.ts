@@ -4,15 +4,13 @@ import { AuthenticationProvider} from "../../providers/authentication/authentica
 import {HomePage} from "../home/home";
 
 
-
 @IonicPage()
 @Component({
-  selector: 'page-login-modal',
-  templateUrl: 'login-modal.html',
+  selector: 'page-signup-modal',
+  templateUrl: 'signup-modal.html',
 })
-export class LoginModalPage {
-  loginCredentials = {}
-
+export class SignupModalPage {
+  signupCredentials = {}
   constructor(public navCtrl: NavController,
               private view: ViewController,
               public navParams: NavParams,
@@ -22,7 +20,7 @@ export class LoginModalPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginModalPage');
+    console.log('ionViewDidLoad SignupModalPage');
   }
 
   closeModal() {
@@ -43,15 +41,15 @@ export class LoginModalPage {
     this.appCtrl.getRootNav().setRoot(HomePage);
   }
 
-  login() {
-    this.authenticationProvider.login(this.loginCredentials)
+  signup() {
+    this.authenticationProvider.signup(this.signupCredentials)
       .subscribe(
         res => {
           this.authenticationProvider.currentUser = res.json().data;
           this.redirectToHome();
-          this.presentToast(`Successfully logged in as ${this.authenticationProvider.currentUser.email}`, 2200)
+          this.presentToast(`Welcome ${this.authenticationProvider.currentUser.email}! You are now logged in as well.`, 2500)
         },
-        err => this.presentToast(err.json().errors[0], 2200)
+        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
       );
     this.closeModal();
   }

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar *ngIf="getUser()">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -49,5 +49,6 @@
       <strong>Sign up or Login to Continue</strong>
     </ion-card>
     <button ion-button type="submit" (click)="openLogin()" block>login</button>
+    <button ion-button type="submit" (click)="openSignup()" block>Sign up</button>
   </div>
 </ion-content>

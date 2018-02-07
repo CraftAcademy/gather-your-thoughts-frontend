@@ -14,15 +14,9 @@
         </button>
 
       </div>
-      <button id="logout" ion-item (click)="logout()" *ngIf="currentUser">
+      <button id="logout" ion-item (click)="logout()" *ngIf="authenticationProvider.currentUser">
         <ion-icon name="exit"></ion-icon>
         Logout {{ authenticationProvider.currentUser.email }}
-      </button>
-      <button ion-item (click)="loginPopup()" *ngIf="!authenticationProvider.currentUser">
-        Login
-      </button>
-      <button ion-item (click)="signupPopup()" *ngIf="!authenticationProvider.currentUser">
-        Sign up
       </button>
     </ion-list>
   </ion-content>

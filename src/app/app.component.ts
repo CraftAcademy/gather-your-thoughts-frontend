@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Nav, Platform, AlertController, ToastController } from 'ionic-angular';
+import { App, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
@@ -23,10 +23,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public alertCtrl: AlertController,
               public authenticationProvider: AuthenticationProvider,
-              public appCtrl: App,
-              public toastCtrl: ToastController) {
+              public appCtrl: App) {
 
     this.initializeApp();
 
@@ -41,88 +39,15 @@ export class MyApp {
 
   }
 
-  loginPopup() {
-    console.log('popup');
-    let confirm = this.alertCtrl.create({
-      title: 'Login',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'email'
+  logout() {
+    this.authenticationProvider.signout()
+      .subscribe(
+        res => {
+          this.redirectToHome();
+          this.authenticationProvider.currentUser = undefined;
         },
-        {
-          name: 'password',
-          placeholder: 'password',
-          type: 'password'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Login',
-          handler: data => {
-            console.log(data);
-            this.authenticationProvider.login(data)
-              .subscribe(
-                res => {
-                  this.currentUser = res.json().data;
-                  this.authenticationProvider.currentUser = true;
-                  this.redirectToHome();
-                  this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
-                },
-                err => this.presentToast(err.json().errors[0], 2200)
-              );
-          }
-        }
-      ]
-    });
-    confirm.present();
+        err => console.error('error'));
   }
-
-  signupPopup() {
-    let alert = this.alertCtrl.create({
-      title: 'Sign up',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'Email'
-        },
-        {
-          name: 'password',
-          placeholder: 'Password',
-          type: 'password'
-        },
-        {
-          name: 'password_confirmation',
-          placeholder: 'Confirm Password',
-          type: 'password'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked!');
-          }
-        },
-        {
-          text: 'Sign up',
-          handler: data => {
-            this.authenticationProvider.signup(data);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -138,14 +63,5 @@ export class MyApp {
 
   redirectToHome() {
     this.appCtrl.getRootNav().setRoot(HomePage);
-  }
-
-  presentToast(msg, duration) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: duration,
-      position: 'top'
-    });
-    toast.present();
   }
 }

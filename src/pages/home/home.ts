@@ -100,4 +100,9 @@ export class HomePage {
     loginModal.present();
   }
 
+  openSignup() {
+    let signupModal = this.modalCtrl.create('SignupModalPage');
+    signupModal.present();
+  }
+
 }

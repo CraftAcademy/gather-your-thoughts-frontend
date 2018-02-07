@@ -24,27 +24,11 @@ export class AuthenticationProvider {
   }
 
   signup(credentials) {
-    this._tokenService
-      .registerAccount(credentials)
-      .subscribe(
-        res => {
-          this.currentUser = res.json().data;
-          //this.redirectToHome();
-          //this.presentToast(`Welcome ${this.currentUser.email}! You are now logged in as well.`, 2500)
-        },
-        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
-      );
+    return this._tokenService.registerAccount(credentials)
   }
 
-  logout() {
-    this._tokenService
-      .signOut()
-      .subscribe(
-        res => {
-          this.redirectToHome();
-        },
-        err => console.error('error'));
-    this.currentUser = undefined;
+  signout() {
+    return this._tokenService.signOut()
   }
 
 }
