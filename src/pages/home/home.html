@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding [@visibilityChanged]="visibility" style="opacity: 0">
   <div *ngIf="getUser()">
     <h1>Gather Your Thoughts</h1>
     <h6>Your personal smart journal</h6>
@@ -29,7 +29,8 @@
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
       <h6>Your most recent entries</h6>
-      <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)" class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
+      <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)"
+                class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
         <ion-grid>
           <ion-row>
             <ion-col>

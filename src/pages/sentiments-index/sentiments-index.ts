@@ -2,14 +2,24 @@ import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SentimentsShowPage } from '../sentiments-show/sentiments-show';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @IonicPage()
 @Component({
   selector: 'page-sentiments-index',
   templateUrl: 'sentiments-index.html',
+  animations: [
+    trigger('visibilityChanged', [
+      state('shown', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('* => *', animate('500ms'))
+    ])
+  ]
 })
 export class SentimentsIndexPage {
   sentiments :any;
+  visibility: string = 'hidden';
 
   constructor(
     public navCtrl: NavController,
@@ -30,6 +40,7 @@ export class SentimentsIndexPage {
         }
         return 0;
       });
+      this.visibility = 'shown';
     });
   }
 

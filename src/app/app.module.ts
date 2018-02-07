@@ -23,6 +23,7 @@ import { LabelsProvider } from '../providers/labels/labels';
 import { HistoryProvider } from '../providers/history/history';
 import { SentimentsProvider } from '../providers/sentiments/sentiments';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
     IonicModule.forRoot(MyApp),
     RouterModule,
     HttpModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

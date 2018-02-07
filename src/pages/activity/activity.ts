@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-@IonicPage()
 @Component({
   selector: 'page-activity',
   templateUrl: 'activity.html',
+  animations: [
+    trigger('visibilityChanged', [
+      state('shown', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('* => *', animate('500ms'))
+    ])
+  ]
 })
 export class ActivityPage {
+  visibility: string = 'hidden';
   entries: any;
   weekdays:string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   isDataAvailable: boolean = false;
@@ -45,6 +54,7 @@ export class ActivityPage {
         this.lineChartData[0].data.push(month.amount);
       }
       this.isDataAvailable = true;
+      this.visibility = 'shown';
     });
   }
 

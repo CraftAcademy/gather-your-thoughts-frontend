@@ -10,7 +10,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding [@visibilityChanged]="visibility" style="opacity: 0">
   <ion-card margin *ngFor="let sentiment of sentiments" (click)="navigateToSentiment(sentiment.id, sentiment.name)" class="{{sentiment.name.toLowerCase()}} card">
     <ion-card-header>{{ sentiment.name }} ({{sentiment.taggings_count}})</ion-card-header>
   </ion-card>

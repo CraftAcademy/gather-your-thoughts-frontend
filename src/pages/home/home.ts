@@ -4,15 +4,24 @@ import { SentimentsProvider } from '../../providers/sentiments/sentiments';
 import { EntriesProvider } from '../../providers/entries/entries'
 import { EntriesShowPage } from "../entries-show/entries-show";
 import { AuthenticationProvider} from "../../providers/authentication/authentication";
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  animations: [
+    trigger('visibilityChanged', [
+      state('shown', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('* => *', animate('500ms'))
+    ])
+  ]
 })
 
 
 export class HomePage {
-
+  visibility: string = 'hidden';
   sentiments: any;
   entries: any;
   doughnutChartLabels:string[] = [];
@@ -24,6 +33,7 @@ export class HomePage {
   isDataAvailable:boolean = false;
 
   constructor(public modalCtrl: ModalController,
+              public browserAnimation: BrowserAnimationsModule,
               public authenticationProvider: AuthenticationProvider,
               public sentimentsProvider: SentimentsProvider,
               public entriesProvider: EntriesProvider,
@@ -64,8 +74,9 @@ export class HomePage {
             break;
         }
         this.isDataAvailable = true;
+        this.visibility = 'shown';
       }
-    });
+    },err => this.visibility = 'shown');
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();
