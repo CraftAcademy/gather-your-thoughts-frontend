@@ -13,17 +13,13 @@
 <ion-content padding>
   <div class="entry">
     <h1> {{ entryTitle }}</h1>
-    <p> {{ entryBody }} </p>
-    <h4>Label:</h4>
-    <ion-list>
-      <li> {{ entryLabel }} </li>
-    </ion-list>
-    <h4>Sentiment:</h4>
-    <ion-list>
-      <li> {{ entrySentiment }} </li>
-    </ion-list>
-    <p>Created at: {{entryDate }}</p>
+    <ion-card padding class="entry-card">
+      <p> {{ entryBody }} </p>
+    </ion-card>
     <div>
+      <p> Label: {{ entryLabel }}
+      <p> Sentiment: {{ entrySentiment }}</p>
+      <p>Created at: {{entryDate }}</p>
       <button ion-button (click)="deletePopup()">Delete</button>
       <button ion-button (click)="presentUpdateModal()">Edit</button>
     </div>
