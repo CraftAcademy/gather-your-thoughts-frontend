@@ -95,4 +95,9 @@ export class HomePage {
     return this.authenticationProvider.currentUser;
   }
 
+  openLogin() {
+    let loginModal = this.modalCtrl.create('LoginModalPage');
+    loginModal.present();
+  }
+
 }

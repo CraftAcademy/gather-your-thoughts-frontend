@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { App, Nav, Platform, AlertController, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Angular2TokenService } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
@@ -20,12 +19,10 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{ title: string, component: any, icon: any }>;
-  currentUser: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private _tokenService: Angular2TokenService,
               public alertCtrl: AlertController,
               public authenticationProvider: AuthenticationProvider,
               public appCtrl: App,
@@ -33,9 +30,6 @@ export class MyApp {
 
     this.initializeApp();
 
-    this._tokenService.init({
-      apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
-    });
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Labels', component: LabelsIndexPage, icon: 'bookmark' },
@@ -72,7 +66,17 @@ export class MyApp {
         {
           text: 'Login',
           handler: data => {
-            this.login(data);
+            console.log(data);
+            this.authenticationProvider.login(data)
+              .subscribe(
+                res => {
+                  this.currentUser = res.json().data;
+                  this.authenticationProvider.currentUser = true;
+                  this.redirectToHome();
+                  this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
+                },
+                err => this.presentToast(err.json().errors[0], 2200)
+              );
           }
         }
       ]
@@ -110,7 +114,7 @@ export class MyApp {
         {
           text: 'Sign up',
           handler: data => {
-            this.signup(data);
+            this.authenticationProvider.signup(data);
           }
         }
       ]
@@ -118,45 +122,19 @@ export class MyApp {
     alert.present();
   }
 
-  login(credentials) {
-    this._tokenService
-      .signIn(credentials)
-      .subscribe(
-        res => {
-          this.currentUser = res.json().data;
-          this.authenticationProvider.currentUser = true;
-          this.redirectToHome();
-          this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
-        },
-        err => this.presentToast(err.json().errors[0], 2200)
-      );
+
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
   }
 
-  signup(credentials) {
-    this._tokenService
-      .registerAccount(credentials)
-      .subscribe(
-        res => {
-          this.currentUser = res.json().data;
-          this.authenticationProvider.currentUser = true;
-          this.redirectToHome();
-          this.presentToast(`Welcome ${this.currentUser.email}! You are now logged in as well.`, 2500)
-        },
-        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
-      );
+  openPage(page) {
+    this.nav.setRoot(page.component);
   }
 
-  logout() {
-    this._tokenService
-      .signOut()
-      .subscribe(
-        res => {
-          this.authenticationProvider.currentUser = false;
-          this.redirectToHome();
-        },
-        err => console.error('error'));
-    this.currentUser = undefined;
-  }
 
   redirectToHome() {
     this.appCtrl.getRootNav().setRoot(HomePage);
@@ -169,16 +147,5 @@ export class MyApp {
       position: 'top'
     });
     toast.present();
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-  }
-
-  openPage(page) {
-    this.nav.setRoot(page.component);
   }
 }
