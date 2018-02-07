@@ -14,7 +14,7 @@ import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
     trigger('visibilityChanged', [
       state('shown', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0 })),
-      transition('* => *', animate('500ms'))
+      transition('* => *', animate('750ms'))
     ])
   ]
 })
@@ -76,7 +76,7 @@ export class HomePage {
         this.isDataAvailable = true;
         this.visibility = 'shown';
       }
-    });
+    },err => this.visibility = 'shown');
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();

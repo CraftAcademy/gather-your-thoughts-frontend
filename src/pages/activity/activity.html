@@ -9,7 +9,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding [@visibilityChanged]="visibility" style="opacity: 0">
   <div *ngIf="isDataAvailable">
     <h1 class='graph-header'>Your entries from the past week</h1>
     <div style="display: block">
