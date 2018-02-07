@@ -33,7 +33,6 @@ export class HomePage {
   isDataAvailable:boolean = false;
 
   constructor(public modalCtrl: ModalController,
-              public browserAnimation: BrowserAnimationsModule,
               public authenticationProvider: AuthenticationProvider,
               public sentimentsProvider: SentimentsProvider,
               public entriesProvider: EntriesProvider,
