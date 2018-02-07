@@ -31,8 +31,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Labels', component: LabelsIndexPage, icon: 'bookmark' },
-      { title: 'History', component: HistoryPage, icon: 'book' },
       { title: 'Sentiments', component: SentimentsIndexPage, icon: 'happy' },
+      { title: 'History', component: HistoryPage, icon: 'book' },
       { title: 'Activity', component: ActivityPage, icon: 'pulse' }
 
     ];

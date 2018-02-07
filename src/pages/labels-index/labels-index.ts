@@ -2,13 +2,23 @@ import { LabelsProvider } from '../../providers/labels/labels';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LabelsShowPage } from './../labels-show/labels-show';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @IonicPage()
 @Component({
   selector: 'page-labels-index',
   templateUrl: 'labels-index.html',
+  animations: [
+    trigger('visibilityChanged', [
+      state('shown', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('* => *', animate('500ms'))
+    ])
+  ]
 })
 export class LabelsIndexPage {
+  visibility: string = 'hidden';
   labels: any;
 
   constructor(
@@ -29,6 +39,7 @@ export class LabelsIndexPage {
         }
         return 0;
       });
+      this.visibility = 'shown';
     });
   }
 

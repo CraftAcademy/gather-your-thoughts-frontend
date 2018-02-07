@@ -14,7 +14,7 @@ import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
     trigger('visibilityChanged', [
       state('shown', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0 })),
-      transition('* => *', animate('750ms'))
+      transition('* => *', animate('500ms'))
     ])
   ]
 })
