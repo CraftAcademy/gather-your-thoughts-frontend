@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, Nav, Platform, AlertController, ToastController } from 'ionic-angular';
+import { App, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Angular2TokenService } from 'angular2-token';
 import { HomePage } from '../pages/home/home';
 import { LabelsIndexPage } from '../pages/labels-index/labels-index';
 import { HistoryPage } from '../pages/history/history';
@@ -20,22 +19,15 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{ title: string, component: any, icon: any }>;
-  currentUser: any;
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              private _tokenService: Angular2TokenService,
-              public alertCtrl: AlertController,
               public authenticationProvider: AuthenticationProvider,
-              public appCtrl: App,
-              public toastCtrl: ToastController) {
+              public appCtrl: App) {
 
     this.initializeApp();
 
-    this._tokenService.init({
-      apiBase: 'https://gather-your-thoughts-backend.herokuapp.com/api/v1'
-    });
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
       { title: 'Labels', component: LabelsIndexPage, icon: 'bookmark' },
@@ -47,128 +39,14 @@ export class MyApp {
 
   }
 
-  loginPopup() {
-    console.log('popup');
-    let confirm = this.alertCtrl.create({
-      title: 'Login',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'email'
-        },
-        {
-          name: 'password',
-          placeholder: 'password',
-          type: 'password'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Login',
-          handler: data => {
-            this.login(data);
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
-  signupPopup() {
-    let alert = this.alertCtrl.create({
-      title: 'Sign up',
-      inputs: [
-        {
-          name: 'email',
-          placeholder: 'Email'
-        },
-        {
-          name: 'password',
-          placeholder: 'Password',
-          type: 'password'
-        },
-        {
-          name: 'password_confirmation',
-          placeholder: 'Confirm Password',
-          type: 'password'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked!');
-          }
-        },
-        {
-          text: 'Sign up',
-          handler: data => {
-            this.signup(data);
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
-
-  login(credentials) {
-    this._tokenService
-      .signIn(credentials)
-      .subscribe(
-        res => {
-          this.currentUser = res.json().data;
-          this.authenticationProvider.currentUser = true;
-          this.redirectToHome();
-          this.presentToast(`Successfully logged in as ${this.currentUser.email}`, 2200);
-        },
-        err => this.presentToast(err.json().errors[0], 2200)
-      );
-  }
-
-  signup(credentials) {
-    this._tokenService
-      .registerAccount(credentials)
-      .subscribe(
-        res => {
-          this.currentUser = res.json().data;
-          this.authenticationProvider.currentUser = true;
-          this.redirectToHome();
-          this.presentToast(`Welcome ${this.currentUser.email}! You are now logged in as well.`, 2500)
-        },
-        err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
-      );
-  }
-
   logout() {
-    this._tokenService
-      .signOut()
+    this.authenticationProvider.signout()
       .subscribe(
         res => {
-          this.authenticationProvider.currentUser = false;
           this.redirectToHome();
+          this.authenticationProvider.currentUser = undefined;
         },
         err => console.error('error'));
-    this.currentUser = undefined;
-  }
-
-  redirectToHome() {
-    this.appCtrl.getRootNav().setRoot(HomePage);
-  }
-
-  presentToast(msg, duration) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: duration,
-      position: 'top'
-    });
-    toast.present();
   }
 
   initializeApp() {
@@ -180,5 +58,10 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+
+  redirectToHome() {
+    this.appCtrl.getRootNav().setRoot(HomePage);
   }
 }

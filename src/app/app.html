@@ -7,27 +7,20 @@
 
   <ion-content>
     <ion-list>
-      <div *ngIf="currentUser">
+      <div *ngIf="authenticationProvider.currentUser">
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <ion-icon name="{{p.icon}}" ></ion-icon>
+          <ion-icon name="{{p.icon}}"></ion-icon>
           {{p.title}}
         </button>
 
+
+        <button id="logout" ion-item (click)="logout()">
+          <ion-icon name="exit"></ion-icon>
+          Logout {{ authenticationProvider.currentUser.email }}
+        </button>
       </div>
-      <button id="logout" ion-item (click)="logout()" *ngIf="currentUser">
-        <ion-icon name="exit"></ion-icon>
-        Logout {{ currentUser.email }}
-      </button>
-      <button ion-item (click)="loginPopup()" *ngIf="!currentUser">
-        Login
-      </button>
-      <button ion-item (click)="signupPopup()" *ngIf="!currentUser">
-        Sign up
-      </button>
     </ion-list>
   </ion-content>
 
 </ion-menu>
-
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
