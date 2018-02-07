@@ -9,15 +9,16 @@
     <ion-list>
       <div *ngIf="authenticationProvider.currentUser">
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <ion-icon name="{{p.icon}}" ></ion-icon>
+          <ion-icon name="{{p.icon}}"></ion-icon>
           {{p.title}}
         </button>
 
+
+        <button id="logout" ion-item (click)="logout()">
+          <ion-icon name="exit"></ion-icon>
+          Logout {{ authenticationProvider.currentUser.email }}
+        </button>
       </div>
-      <button id="logout" ion-item (click)="logout()" *ngIf="authenticationProvider.currentUser">
-        <ion-icon name="exit"></ion-icon>
-        Logout {{ authenticationProvider.currentUser.email }}
-      </button>
     </ion-list>
   </ion-content>
 
