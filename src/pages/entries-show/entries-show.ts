@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController, ToastController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 import { HomePage } from '../../pages/home/home';
-import { UpdateThoughtModalPage } from '../../pages/update-thought-modal/update-thought-modal';
 
 @IonicPage()
 @Component({
