@@ -39,6 +39,7 @@ export class SignupModalPage {
 
   redirectToHome() {
     this.appCtrl.getRootNav().setRoot(HomePage);
+    this.closeModal();
   }
 
   signup() {
@@ -51,7 +52,6 @@ export class SignupModalPage {
         },
         err => this.presentToast(err.json().errors.full_messages.join(', '), 3000)
       );
-    this.closeModal();
   }
 
 }

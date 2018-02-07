@@ -41,6 +41,7 @@ export class LoginModalPage {
 
   redirectToHome() {
     this.appCtrl.getRootNav().setRoot(HomePage);
+    this.closeModal();
   }
 
   login() {
@@ -53,7 +54,7 @@ export class LoginModalPage {
         },
         err => this.presentToast(err.json().errors[0], 2200)
       );
-    this.closeModal();
+
   }
 
 }
