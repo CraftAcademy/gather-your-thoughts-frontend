@@ -81,6 +81,14 @@ export class HomePage {
     });
   }
 
+  chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  chartHovered(e:any):void {
+    console.log(e);
+  }
+
 
   presentEntryModal() {
     let entryModal = this.modalCtrl.create('EntryModalPage');
