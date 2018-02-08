@@ -52,8 +52,6 @@ export class ActivityPage {
       for (let sentiment of this.top_sentiments) {
         sentiment.imagePath = `assets/icon/${sentiment.name.toLowerCase()}.ico`
       }
-
-      console.log(this.top_sentiments)
       for (let day of this.entries.week) {
         this.barChartLabels.push(this.weekdays[new Date(day.date).getDay()]);
         this.barChartData[0].data.push(day.amount);
