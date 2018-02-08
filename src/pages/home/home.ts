@@ -72,9 +72,10 @@ export class HomePage {
             break;
         }
         this.isDataAvailable = true;
-        this.visibility = 'shown';
       }
     },err => this.visibility = 'shown');
+
+    this.visibility = 'shown';
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();

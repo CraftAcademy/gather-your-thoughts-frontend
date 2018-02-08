@@ -24,7 +24,7 @@
         margin: auto !important;
     }
     .alert-message {
-        color: white; // text color for confirm alerts
+        color: white;
     }
     .alert-wrapper {
         background-color: color($colors, light, base);
@@ -32,11 +32,13 @@
     }
   }
 
+
   .happy {
-    border-right: 7px solid #FCAE3B;
+    border-right: 7px solid orange;
   }
+
   .sad {
-    border-right: 7px solid #89D0FF;
+    border-right: 7px solid rgb(224, 224, 224);
   }
 
   .angry {
@@ -44,15 +46,25 @@
   }
 
   .neutral {
-    border-right: 7px solid #F6FE5C;
+    border-right: 7px solid yellow;
   }
   .excited {
     border-right: 7px solid #69FB5F;
   }
+
+  .sentiment-card {
+    border-right: 10px solid rgb(224, 224, 224);
+  }
+
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: rgb(224, 224, 224);
   }
+
+  .dog {
+    border-right: 7px solid orange;
+  }
+
 
   #logout {
     position: absolute;

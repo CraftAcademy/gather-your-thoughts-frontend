@@ -30,14 +30,14 @@
       </div>
       <h6>Your most recent entries</h6>
       <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)"
-                class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
-        <ion-grid>
+                class="sentiment-card card">
+        <ion-grid class="dog">
           <ion-row>
             <ion-col>
               <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
             </ion-col>
             <ion-col class="right-col">
-              <p>{{entry.attributes.labels}}, {{entry.attributes.date}}</p>
+              <p> {{entry.attributes.labels}}, {{entry.attributes.date}}</p>
             </ion-col>
           </ion-row>
         </ion-grid>
