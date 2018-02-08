@@ -1,8 +1,32 @@
 page-activity {
 
   .graph-header {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     font-size: 20px;
     text-align: center;
+  }
+
+  .emoji-sentiments {
+    padding: -5px;
+    border-radius: 5px;
+    border-bottom: 4.5px solid rgb(246, 246, 246);
+    display: flex;
+    text-align: center;
+    margin: 18px auto;
+    width: 55%;
+    min-width: 100px;
+  }
+
+  .sentiment_img {
+    text-align: center;
+    margin: 5px auto;
+  }
+
+  .sentiment_img img {
+
+  }
+
+  .fak {
+    margin: 20px 0;
   }
 }
