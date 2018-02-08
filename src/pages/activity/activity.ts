@@ -16,7 +16,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class ActivityPage {
   top_sentiments: any;
-  sentiment_img: any;
   visibility: string = 'hidden';
   entries: any;
   weekdays:string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
