@@ -74,7 +74,8 @@ export class HomePage {
         this.isDataAvailable = true;
         this.visibility = 'shown';
       }
-    },err => this.visibility = 'shown');
+    },err => this.visibility = 'shown',
+      complete => this.visibility = 'shown' );
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();
