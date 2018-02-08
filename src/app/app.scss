@@ -33,11 +33,10 @@
   }
 
   .happy {
-    border-right: 7px solid orange;
+    border-right: 7px solid #FCAE3B;
   }
-
   .sad {
-    border-right: 7px solid rgb(224, 224, 224);
+    border-right: 7px solid #89D0FF;
   }
 
   .angry {
@@ -45,8 +44,9 @@
   }
 
   .neutral {
-    border-right: 7px solid yellow;
+    border-right: 7px solid #F6FE5C;
   }
+  
   .excited {
     border-right: 7px solid #69FB5F;
   }
