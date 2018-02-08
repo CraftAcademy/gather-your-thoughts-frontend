@@ -18,7 +18,13 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Body</ion-label>
-      <ion-textarea [(ngModel)]="entry.body" name="body"></ion-textarea>
+      <ion-textarea (ionBlur)="blur()" [(ngModel)]="entry.body" name="body"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="suggestedLabels">
+      <ion-label>Suggested Labels:</ion-label>
+      <ion-select [(ngModel)]="entry.label_list" name="label_list">
+        <ion-option *ngFor="let label of suggestedLabels">{{ label }}</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item *ngIf="count">
       <ion-label>Choose one of {{ count }} previous labels</ion-label>

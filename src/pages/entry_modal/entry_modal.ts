@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, IonicPage, NavController, ViewController, ToastController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 import { LabelsProvider } from '../../providers/labels/labels';
+import { AnalyticsProvider} from "../../providers/analytics/analytics";
 import { HomePage } from '../../pages/home/home';
 
 @IonicPage()
@@ -16,11 +17,13 @@ export class EntryModalPage {
   labels :any;
   count :any;
   label :boolean;
+  suggestedLabels :any;
 
   constructor(private view: ViewController,
               public navCtrl: NavController,
               public entriesProvider: EntriesProvider,
               public labelsProvider: LabelsProvider,
+              public analyticsProvider: AnalyticsProvider,
               private toastCtrl: ToastController,
               public appCtrl: App) {
 
@@ -78,6 +81,14 @@ export class EntryModalPage {
         }
       }
     )
+  }
+
+  blur() {
+    console.log(this.entry.body);
+    this.analyticsProvider.getLabels(this.entry.body)
+      .subscribe(
+        data => this.suggestedLabels = (data.documents[0].keyPhrases)
+      )
   }
 
 }

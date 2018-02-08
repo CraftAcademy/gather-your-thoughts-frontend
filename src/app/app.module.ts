@@ -24,6 +24,7 @@ import { HistoryProvider } from '../providers/history/history';
 import { SentimentsProvider } from '../providers/sentiments/sentiments';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import { AnalyticsProvider } from '../providers/analytics/analytics';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { BrowserAnimationsModule} from "@angular/platform-browser/animations"
     LabelsProvider,
     HistoryProvider,
     SentimentsProvider,
-    AuthenticationProvider
+    AuthenticationProvider,
+    AnalyticsProvider
   ]
 })
 export class AppModule {}
