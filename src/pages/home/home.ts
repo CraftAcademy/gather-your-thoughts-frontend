@@ -81,13 +81,14 @@ export class HomePage {
     });
   }
 
-  public chartClicked(e:any):void {
+  chartClicked(e:any):void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  chartHovered(e:any):void {
     console.log(e);
   }
+
 
   presentEntryModal() {
     let entryModal = this.modalCtrl.create('EntryModalPage');

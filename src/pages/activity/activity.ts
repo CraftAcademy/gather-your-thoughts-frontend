@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -15,6 +15,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class ActivityPage {
+  top_sentiments: any;
   visibility: string = 'hidden';
   entries: any;
   weekdays:string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
@@ -40,10 +41,15 @@ export class ActivityPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     public entriesProvider: EntriesProvider
   ) {
     this.entriesProvider.getWeeklyThoughts().subscribe((data) => {
       this.entries = data;
+      this.top_sentiments = data.sentiment_week;
+      for (let sentiment of this.top_sentiments) {
+        sentiment.imagePath = `assets/icon/${sentiment.name.toLowerCase()}.ico`
+      }
       for (let day of this.entries.week) {
         this.barChartLabels.push(this.weekdays[new Date(day.date).getDay()]);
         this.barChartData[0].data.push(day.amount);
@@ -57,6 +63,15 @@ export class ActivityPage {
     });
   }
 
+  sentimentPopup(name, amount) {
+    let alert = this.alertCtrl.create({
+    title: `Sentiment: ${name}`,
+    subTitle: `Thoughts: ${amount}`,
+    buttons: ['Dismiss'],
+    cssClass: 'alertCustomCss'
+  });
+  alert.present();
+}
 
   chartClicked(e:any):void {
     console.log(e);

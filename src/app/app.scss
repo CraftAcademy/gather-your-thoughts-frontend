@@ -14,37 +14,55 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.happy {
-  border-right: 7px solid #FCAE3B;
-}
-.sad {
-  border-right: 7px solid #89D0FF;
-}
+.alertCustomCss {
+    color: black; // text color for basic alerts
+    button {
+        text-align: center;
+        letter-spacing: .5px;
+        color: white !important;
+        background-color: rgb(5, 109, 255) !important;
+        margin: auto !important;
+    }
+    .alert-message {
+        color: white; // text color for confirm alerts
+    }
+    .alert-wrapper {
+        background-color: color($colors, light, base);
+        border-radius: 8px;
+    }
+  }
 
-.angry {
-  border-right: 7px solid #FD6153;
-}
+  .happy {
+    border-right: 7px solid #FCAE3B;
+  }
+  .sad {
+    border-right: 7px solid #89D0FF;
+  }
 
-.neutral {
-  border-right: 7px solid #F6FE5C;
-}
-.excited {
-  border-right: 7px solid #69FB5F;
-}
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  background-color: rgb(224, 224, 224);
-}
+  .angry {
+    border-right: 7px solid #FD6153;
+  }
 
-#logout {
-  position: absolute;
-  bottom: 0;
-}
+  .neutral {
+    border-right: 7px solid #F6FE5C;
+  }
+  .excited {
+    border-right: 7px solid #69FB5F;
+  }
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: rgb(224, 224, 224);
+  }
 
-.row {
-  height: 50px;
-}
+  #logout {
+    position: absolute;
+    bottom: 0;
+  }
 
-.right-col {
-  text-align: right;
-}
+  .row {
+    height: 50px;
+  }
+
+  .right-col {
+    text-align: right;
+  }
