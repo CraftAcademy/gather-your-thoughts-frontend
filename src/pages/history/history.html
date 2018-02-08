@@ -9,23 +9,27 @@
 
 
 <ion-content padding [@visibilityChanged]="visibility" style="opacity: 0">
-<h4>Go back in time. Pick a date and hit Search</h4>
+<h4>What were you thinking in the past?</h4>
   <ion-item>
     <ion-label>Date</ion-label>
     <ion-datetime displayFormat="YYYY/MM/DD" pickerFormat="YYYY/MM/DD" [(ngModel)]="myDate"></ion-datetime>
   </ion-item>
-  <button ion-button (click)="dateEntries()" block>Search</button>
+  <button *ngIf="myDate" ion-button (click)="dateEntries()" block [@historyEntries]="history">Go back in time to {{ myDate }}</button>
 
-  <ion-card margin *ngFor="let entry of entries"  (click)="navigateToEntry(entry.id)" class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-    <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
-        </ion-col>
-        <ion-col class="right-col">
-    <p>{{entry.attributes.labels}}</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+  <div class='history-entries'>
+
+    <h4 *ngIf="text" style="opacity: 0.65">{{ text }}</h4>
+    <ion-card class="card" margin *ngFor="let entry of entries"  (click)="navigateToEntry(entry.id)" class="{{entry.attributes.sentiments[0].toLowerCase()}} card"  style="opacity: 0.65">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+      <ion-card-header>{{ entry.attributes.title }}</ion-card-header>
+          </ion-col>
+          <ion-col class="right-col">
+      <p>{{entry.attributes.labels}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 </ion-content>

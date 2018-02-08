@@ -50,7 +50,7 @@ export class LoginModalPage {
         res => {
           this.authenticationProvider.currentUser = res.json().data;
           this.redirectToHome();
-          this.presentToast(`Successfully logged in as ${this.authenticationProvider.currentUser.email}`, 1750)
+          this.presentToast(`Successfully logged in as ${this.authenticationProvider.currentUser.email}`, 100)
         },
         err => this.presentToast(err.json().errors[0], 2200)
       );

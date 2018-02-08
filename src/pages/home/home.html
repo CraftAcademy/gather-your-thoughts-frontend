@@ -30,8 +30,8 @@
       </div>
       <h6>Your most recent entries</h6>
       <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)"
-                class="sentiment-card card">
-        <ion-grid class="dog">
+                class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
+        <ion-grid>
           <ion-row>
             <ion-col>
               <ion-card-header>{{ entry.attributes.title }}</ion-card-header>

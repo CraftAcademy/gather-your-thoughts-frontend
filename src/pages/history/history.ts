@@ -13,11 +13,19 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       state('shown', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0 })),
       transition('* => *', animate('500ms'))
+    ]),
+
+    trigger('historyEntries', [
+      state('shown', style({ opacity: 1})),
+      state('hidden', style({ opacity: 0.65})),
+      transition('* => *', animate('700ms'))
     ])
   ]
 })
 export class HistoryPage {
-  visibility: string = 'hidden';
+  visibility: string = 'hidden'
+  history: string = 'shown';
+  text: string;
   myDate: any;
   entries: any;
   constructor(public navCtrl: NavController,
@@ -32,7 +40,29 @@ export class HistoryPage {
 
   dateEntries() {
     this.historyProvider.getDateEntries(this.myDate)
-      .subscribe(({ data }) => this.entries = data);
+      .subscribe(({ data }) => {
+      this.history = 'hidden';
+      setTimeout(() =>
+        {
+          this.entries = data;
+        },
+        800);
+        if (data.length == 0) {
+          setTimeout(() =>
+            {
+              this.text = "No entries were created on this day."
+            },
+          800);
+        }
+        else {
+          setTimeout(() =>
+            {
+              this.text = undefined;
+            },
+            800);
+        }
+      }
+    )
   }
 
   navigateToEntry(entryId) {

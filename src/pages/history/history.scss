@@ -1,3 +1,17 @@
 page-history {
   background-color: white;
+
+  .dog {
+    transition-delay: 10s;
+  }
+
+  .history-entries {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .history-entries h4 {
+    padding-bottom: 10px;
+  }
 }
