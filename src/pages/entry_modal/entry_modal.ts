@@ -12,7 +12,7 @@ import { HomePage } from '../../pages/home/home';
 })
 
 export class EntryModalPage {
-  entry = { label_list: undefined };
+  entry = { label_list: undefined, body: undefined };
   inputVal :any;
   labels :any;
   count :any;
@@ -84,11 +84,12 @@ export class EntryModalPage {
   }
 
   blur() {
-    console.log(this.entry.body);
-    this.analyticsProvider.getLabels(this.entry.body)
-      .subscribe(
-        data => this.suggestedLabels = (data.documents[0].keyPhrases)
-      )
+    if(this.entry.body) {
+      this.analyticsProvider.getLabels(this.entry.body)
+        .subscribe(
+          data => this.suggestedLabels = (data.documents[0].keyPhrases)
+        )
+    }
   }
 
 }

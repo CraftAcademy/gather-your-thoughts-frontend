@@ -18,7 +18,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Body</ion-label>
-      <ion-textarea (ionBlur)="blur()" [(ngModel)]="entry.body" name="body"></ion-textarea>
+      <ion-textarea rows="10" (ionBlur)="blur()" [(ngModel)]="entry.body" name="body"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="suggestedLabels">
       <ion-label>Suggested Labels:</ion-label>
