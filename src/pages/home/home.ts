@@ -73,7 +73,8 @@ export class HomePage {
         }
         this.isDataAvailable = true;
       }
-    },err => this.visibility = 'shown');
+    }, () => this.visibility = 'shown',
+      ()=> this.visibility = 'shown');
 
     this.visibility = 'shown';
 
