@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { EntriesProvider } from '../../providers/entries/entries';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @Component({
   selector: 'page-activity',

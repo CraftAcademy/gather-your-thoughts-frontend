@@ -1,4 +1,4 @@
-import {Injectable, ViewChild} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HomePage} from "../../pages/home/home";
 import { App, ToastController } from 'ionic-angular';
 import { Angular2TokenService } from 'angular2-token';
