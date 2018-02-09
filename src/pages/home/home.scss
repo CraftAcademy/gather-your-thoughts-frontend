@@ -1,3 +1,44 @@
 page-home {
   background-color: white;
+
+  .welcome-content ion-card {
+    width: 290px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgba(224, 224, 224, 0.5);
+    line-height: 3.5px;
+    font-size: 15.5px;
+    text-align: center;
+  }
+
+  .welcome-content {
+    padding: 37px 0;
+    background-image: url("https://i.imgur.com/ufiNAbw.jpg");
+    background-size: cover;
+    height: 100%;
+  }
+
+
+  .welcome-content p {
+    padding-bottom: 12px;
+    letter-spacing: .7px;
+  }
+
+  .welcome-content strong {
+    letter-spacing: 1px;
+  }
+
+  .test-btn {
+    margin: 15px;
+    text-align: center;
+  }
+
+  .test-btn button {
+    margin: 10px;
+  }
+
+  #welcome {
+  }
+
 }

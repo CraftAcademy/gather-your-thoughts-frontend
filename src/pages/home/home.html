@@ -3,22 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title text-left>Home</ion-title>
   </ion-navbar>
   <ion-navbar *ngIf="!getUser()">
-    <ion-title>Welcome</ion-title>
+    <ion-title text-center id='welcome'>Welcome</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="masters" [@visibilityChanged]="visibility" style="opacity: 0">
-  <div *ngIf="getUser()">
-    <h1>Gather Your Thoughts</h1>
-    <h6>Your personal smart journal</h6>
-    <ion-card (click)="presentEntryModal()">
-      <ion-card-header>Create entry</ion-card-header>
-    </ion-card>
-    <div *ngIf="isDataAvailable">
-      <h5> Your entries in the last month. How have you been feeling?</h5>
+  <div class='home' *ngIf="getUser()">
+    <h1 text-center>Gather Your Thoughts</h1>
+    <h6 text-center>Your personal smart journal</h6>
+    <button *ngIf="!noEntries" class='submit-btn' (click)="presentEntryModal()" ion-button>Create Entry</button>
+    <button *ngIf="noEntries" class='submit-btn' (click)="presentEntryModal()" ion-button>Create Your First Entry</button>
+    <div class='home-content' *ngIf="isDataAvailable">
+      <h6 id='month-text'> How have you been feeling in the past month?</h6>
       <div style="display: block">
         <canvas baseChart
                 [data]="doughnutChartData"
@@ -28,7 +27,7 @@
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
-      <h6>Your most recent entries</h6>
+      <h6 text-center>Your most recent entries</h6>
       <ion-card margin *ngFor="let entry of entries" (click)="navigateToEntry(entry.id)"
                 class="{{entry.attributes.sentiments[0].toLowerCase()}} card">
         <ion-grid>
@@ -44,15 +43,17 @@
       </ion-card>
     </div>
   </div>
-  <div *ngIf="!getUser()">
-    <h1>Gather Your Thoughts</h1>
-    <h6>Your personal smart journal</h6>
+  <div class='welcome-content' *ngIf="!getUser()">
+    <h1 text-center>Gather Your Thoughts</h1>
+    <h6 text-center>Your personal smart journal</h6>
     <ion-card padding>
       <p>Welcome to your new place for journalkeeping. If you have ideas, reflections or just want to write stuff down
         this is the place to do it </p>
       <strong>Sign up or Login to Continue</strong>
     </ion-card>
-    <button ion-button type="submit" (click)="openLogin()">Login</button>
-    <button ion-button type="submit" (click)="openSignup()">Sign up</button>
+    <div class='test-btn'>
+      <button ion-button type="submit" (click)="openLogin()">Login</button>
+      <button ion-button type="submit" (click)="openSignup()">Sign up</button>
+    </div>
   </div>
 </ion-content>

@@ -23,6 +23,7 @@ export class HomePage {
   visibility: string = 'hidden';
   sentiments: any;
   entries: any;
+  noEntries: boolean = false;
   doughnutChartLabels:string[] = [];
   doughnutChartData:number[] = [];
   doughnutChartColors:any[] = [{
@@ -68,7 +69,7 @@ export class HomePage {
             this.doughnutChartColors[0].backgroundColor.push("#69FB5F");
             break;
           default:
-            this.doughnutChartColors[0].backgroundColor.push("#F6FE5C");
+            this.doughnutChartColors[0].backgroundColor.push("#FBF555");
             break;
         }
         this.isDataAvailable = true;
@@ -78,6 +79,9 @@ export class HomePage {
 
     this.entriesProvider.getRecentEntries().subscribe(({data}) => {
       this.entries = data.reverse();
+      if (data.length == 0) {
+        this.noEntries = true
+      }
     });
   }
 
