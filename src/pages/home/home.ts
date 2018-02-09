@@ -50,22 +50,22 @@ export class HomePage {
       }
 
 
-    this.sentimentsProvider.getMonthSentiments().subscribe((data) => {
-      this.sentiments = data.sentiments.map((x : any) => ({sentiment: x.name, amount: x.taggings_count}));
-      for (let sentiment of this.sentiments) {
-        this.doughnutChartLabels.push(sentiment.sentiment);
-        this.doughnutChartData.push(sentiment.amount);
+      this.sentimentsProvider.getMonthSentiments().subscribe((data) => {
+      this.sentiments = data.sentiments;
+      for (var sentiment in this.sentiments) {
+        this.doughnutChartLabels.push(sentiment);
+        this.doughnutChartData.push(this.sentiments[sentiment]);
         switch(true) {
-          case(sentiment.sentiment == "Happy"):
+          case(sentiment == "Happy"):
             this.doughnutChartColors[0].backgroundColor.push("#FCAE3B");
             break;
-          case(sentiment.sentiment == "Sad"):
+          case(sentiment == "Sad"):
             this.doughnutChartColors[0].backgroundColor.push("#89D0FF");
             break;
-          case(sentiment.sentiment == "Angry"):
+          case(sentiment == "Angry"):
             this.doughnutChartColors[0].backgroundColor.push("#FD6153");
             break;
-          case(sentiment.sentiment == "Excited"):
+          case(sentiment == "Excited"):
             this.doughnutChartColors[0].backgroundColor.push("#69FB5F");
             break;
           default:
