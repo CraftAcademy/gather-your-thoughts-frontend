@@ -3,10 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title text-left>Home</ion-title>
   </ion-navbar>
   <ion-navbar *ngIf="!getUser()">
-    <ion-title>Welcome</ion-title>
+    <ion-title text-center id='welcome'>Welcome</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -43,15 +43,17 @@
       </ion-card>
     </div>
   </div>
-  <div *ngIf="!getUser()">
-    <h1>Gather Your Thoughts</h1>
-    <h6>Your personal smart journal</h6>
+  <div class='welcome-content' *ngIf="!getUser()">
+    <h1 text-center>Gather Your Thoughts</h1>
+    <h6 text-center>Your personal smart journal</h6>
     <ion-card padding>
       <p>Welcome to your new place for journalkeeping. If you have ideas, reflections or just want to write stuff down
         this is the place to do it </p>
       <strong>Sign up or Login to Continue</strong>
     </ion-card>
-    <button ion-button type="submit" (click)="openLogin()">Login</button>
-    <button ion-button type="submit" (click)="openSignup()">Sign up</button>
+    <div class='test-btn'>
+      <button ion-button type="submit" (click)="openLogin()">Login</button>
+      <button ion-button type="submit" (click)="openSignup()">Sign up</button>
+    </div>
   </div>
 </ion-content>

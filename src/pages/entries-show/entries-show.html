@@ -11,17 +11,19 @@
 
 
 <ion-content padding>
-  <div class="entry">
-    <h1> {{ entryTitle }}</h1>
-    <ion-card padding class="entry-card">
+  <div margin class="entry">
+    <div class='thought-text'>
+      <h1> {{ entryTitle }}</h1>
       <p> {{ entryBody }} </p>
-    </ion-card>
-    <div>
+    </div>
+    <div class='thought-details'>
       <p> Label: {{ entryLabel }}
       <p> Sentiment: {{ entrySentiment }}</p>
       <p>Created at: {{entryDate }}</p>
-      <button ion-button (click)="deletePopup()">Delete</button>
-      <button ion-button (click)="presentUpdateModal()">Edit</button>
+      <div class='test-btns'>
+        <button ion-button (click)="deletePopup()">Delete</button>
+        <button ion-button (click)="presentUpdateModal()">Edit</button>
+      </div>
     </div>
   </div>
 </ion-content>

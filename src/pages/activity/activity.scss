@@ -2,7 +2,7 @@ page-activity {
 
   .graph-header {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
   }
 
@@ -12,18 +12,37 @@ page-activity {
     border-bottom: 4.5px solid rgb(246, 246, 246);
     display: flex;
     text-align: center;
-    margin: 18px auto;
-    width: 55%;
+    margin: 25px auto;
     min-width: 100px;
   }
 
+  .emoji-1 {
+    width: 30%;
+  }
+
+  .emoji-2 {
+    width: 30%;
+  }
+
+  .emoji-3 {
+    width: 44%;
+  }
+
+  .emoji-4 {
+    width: 58%;
+  }
+
+  .emoji-5 {
+    width: 71%;
+  }
+
   .sentiment_img {
-    text-align: center;
     margin: 5px auto;
+    align-items: center;
   }
 
   .sentiment_img img {
-    margin: 0 5px !important;
+    text-align: center;
   }
 
   .fak {

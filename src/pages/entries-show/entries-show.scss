@@ -1,6 +1,29 @@
 page-entries-show {
 
-  .entry-card {
-    margin-bottom: 30px;
+  .entry {
+    position: relative;
+  }
+
+  .thought-text {
+    text-align: center;
+    padding: 20px;
+    border-top: 5px solid rgb(224, 224, 224);
+    border-bottom: 5px solid rgb(224, 224, 224);
+  }
+
+  .thought-details p {
+    text-align: left;
+    margin-left: 110px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .test-btns {
+    margin: auto;
+    margin-left: 10px;
+    text-align: center;
+  }
+
+  .text-btns button {
   }
 }
