@@ -18,17 +18,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Body</ion-label>
-      <ion-textarea [(ngModel)]="entry.body" name="body"></ion-textarea>
-    </ion-item>
-    <ion-item *ngIf="count">
-      <ion-label>Choose one of {{ count }} previous labels</ion-label>
-      <ion-select [(ngModel)]="entry.label_list" name="label_list" (ionChange)="previousLabelSet()">
-        <ion-option *ngFor="let label of labels">{{ label.name }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item *ngIf="!label">
-      <ion-label>Choose a new label</ion-label>
-      <ion-input [(ngModel)]="inputVal" (keyup)="newLabelSet(inputVal)" name="label_input"></ion-input>
+      <ion-textarea rows="10" (ionBlur)="blur()" [(ngModel)]="entry.body" name="body"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>Sentiment</ion-label>
@@ -39,6 +29,22 @@
         <ion-option value="Excited">Excited</ion-option>
         <ion-option value="Neutral">Neutral</ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Suggested Labels:</ion-label>
+      <ion-select [(ngModel)]="entry.label_list" name="label_list" [disabled]="!enableSelect" (ionChange)="previousLabelSet()">
+        <ion-option *ngFor="let label of suggestedLabels">{{ label }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="count">
+      <ion-label>Choose one of {{ count }} previous labels</ion-label>
+      <ion-select [(ngModel)]="entry.label_list" name="label_list" (ionChange)="previousLabelSet()">
+        <ion-option *ngFor="let label of labels">{{ label.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!label">
+      <ion-label>Choose a new label</ion-label>
+      <ion-input [(ngModel)]="inputVal" (keyup)="newLabelSet(inputVal)" name="label_input"></ion-input>
     </ion-item>
     <button ion-button type="submit" block>Create Entry</button>
   </form>
