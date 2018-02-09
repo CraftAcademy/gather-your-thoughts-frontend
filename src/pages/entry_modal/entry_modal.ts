@@ -18,6 +18,7 @@ export class EntryModalPage {
   count :any;
   label :boolean;
   suggestedLabels :any;
+  enableSelect: boolean = false;
 
   constructor(private view: ViewController,
               public navCtrl: NavController,
@@ -43,6 +44,7 @@ export class EntryModalPage {
 
   previousLabelSet() {
     if (this.entry.label_list && !this.inputVal) {
+      this.inputVal = undefined;
       this.label = true;
     }
   }
@@ -59,10 +61,6 @@ export class EntryModalPage {
   closeModal() {
     this.view.dismiss();
     this.appCtrl.getRootNav().setRoot(HomePage);
-  }
-
-  getErrorMessageFrom(error) {
-    return error.json().error[0];
   }
 
   createEntry() {
@@ -87,7 +85,10 @@ export class EntryModalPage {
     if(this.entry.body) {
       this.analyticsProvider.getLabels(this.entry.body)
         .subscribe(
-          data => this.suggestedLabels = (data.documents[0].keyPhrases)
+          data => {
+            this.suggestedLabels = (data.documents[0].keyPhrases);
+          this.enableSelect = true;
+          }
         )
     }
   }

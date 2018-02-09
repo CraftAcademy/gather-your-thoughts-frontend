@@ -20,9 +20,19 @@
       <ion-label floating>Body</ion-label>
       <ion-textarea rows="10" (ionBlur)="blur()" [(ngModel)]="entry.body" name="body"></ion-textarea>
     </ion-item>
-    <ion-item *ngIf="suggestedLabels">
+    <ion-item>
+      <ion-label>Sentiment</ion-label>
+      <ion-select [(ngModel)]="entry.sentiment_list" name="sentiment_list">
+        <ion-option value="Happy">Happy</ion-option>
+        <ion-option value="Sad">Sad</ion-option>
+        <ion-option value="Angry">Angry</ion-option>
+        <ion-option value="Excited">Excited</ion-option>
+        <ion-option value="Neutral">Neutral</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label>Suggested Labels:</ion-label>
-      <ion-select [(ngModel)]="entry.label_list" name="label_list">
+      <ion-select [(ngModel)]="entry.label_list" name="label_list" [disabled]="!enableSelect" (ionChange)="previousLabelSet()">
         <ion-option *ngFor="let label of suggestedLabels">{{ label }}</ion-option>
       </ion-select>
     </ion-item>
@@ -35,16 +45,6 @@
     <ion-item *ngIf="!label">
       <ion-label>Choose a new label</ion-label>
       <ion-input [(ngModel)]="inputVal" (keyup)="newLabelSet(inputVal)" name="label_input"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Sentiment</ion-label>
-      <ion-select [(ngModel)]="entry.sentiment_list" name="sentiment_list">
-        <ion-option value="Happy">Happy</ion-option>
-        <ion-option value="Sad">Sad</ion-option>
-        <ion-option value="Angry">Angry</ion-option>
-        <ion-option value="Excited">Excited</ion-option>
-        <ion-option value="Neutral">Neutral</ion-option>
-      </ion-select>
     </ion-item>
     <button ion-button type="submit" block>Create Entry</button>
   </form>
