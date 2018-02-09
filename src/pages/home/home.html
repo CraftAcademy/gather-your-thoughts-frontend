@@ -17,7 +17,7 @@
     <button *ngIf="!noEntries" class='submit-btn' (click)="presentEntryModal()" ion-button>Create Entry</button>
     <button *ngIf="noEntries" class='submit-btn' (click)="presentEntryModal()" ion-button>Create Your First Entry</button>
     <div class='home-content' *ngIf="isDataAvailable">
-      <h6 id='month-text'> How have you been feeling in the past month?</h6>
+      <h6 text-center id='month-text'> How have you been feeling in the past month?</h6>
       <div style="display: block">
         <canvas baseChart
                 [data]="doughnutChartData"
