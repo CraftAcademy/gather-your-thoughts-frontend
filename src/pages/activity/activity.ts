@@ -75,21 +75,6 @@ export class ActivityPage {
   alert.present();
 }
 
-  setMyStyles(sentiments) {
-    // if (sentiments == 1) {
-    //   let styles = {
-    //     'width': '40%'
-    //   };
-    // }
-    // if (sentiments == 2) {
-    //   console.log('two!')
-    //   let styles = {
-    //     'width': '45%'
-    //   }
-    //   return styles;
-    // }
-  }
-
   chartClicked(e:any):void {
     console.log(e);
   }
