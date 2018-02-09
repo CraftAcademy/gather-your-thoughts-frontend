@@ -32,6 +32,27 @@
     }
   }
 
+  .home {
+    margin-top: 12px;
+  }
+
+  .home h6 {
+    margin-top: 0px;
+  }
+
+  .submit-btn {
+    display: block;
+    margin: 20px auto;
+  }
+
+  #month-text {
+    font-size: 16.5px;
+  }
+
+  .home canvas {
+    margin: 18px 0;
+  }
+
   .happy {
     border-right: 7px solid #FCAE3B;
   }
@@ -44,9 +65,9 @@
   }
 
   .neutral {
-    border-right: 7px solid #F6FE5C;
+    border-right: 7px solid #FBF555;
   }
-  
+
   .excited {
     border-right: 7px solid #69FB5F;
   }
