@@ -24,7 +24,7 @@
         margin: auto !important;
     }
     .alert-message {
-        color: white; // text color for confirm alerts
+        color: white;
     }
     .alert-wrapper {
         background-color: color($colors, light, base);
@@ -46,9 +46,11 @@
   .neutral {
     border-right: 7px solid #F6FE5C;
   }
+  
   .excited {
     border-right: 7px solid #69FB5F;
   }
+
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: rgb(224, 224, 224);
