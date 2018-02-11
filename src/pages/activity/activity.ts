@@ -68,7 +68,7 @@ export class ActivityPage {
   sentimentPopup(name, amount) {
     let alert = this.alertCtrl.create({
     title: `Sentiment: ${name}`,
-    subTitle: `Thoughts: ${amount}`,
+    subTitle: `Entries: ${amount}`,
     buttons: ['Dismiss'],
     cssClass: 'alertCustomCss'
   });
