@@ -15,11 +15,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class ActivityPage {
-  top_sentiments: any;
+  top_sentiments: any[] = [];
   sentiments_length: any;
   visibility: string = 'hidden';
   entries: any;
-  weekdays:string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+  weekdays: string[] = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   isDataAvailable: boolean = false;
   barChartOptions:any = {
   scaleShowVerticalLines: true,
@@ -47,11 +47,12 @@ export class ActivityPage {
   ) {
     this.entriesProvider.getWeeklyThoughts().subscribe((data) => {
       this.entries = data;
-      this.top_sentiments = data.sentiment_week;
-      this.sentiments_length = this.top_sentiments.length;
-      for (let sentiment of this.top_sentiments) {
-        sentiment.imagePath = `assets/icon/${sentiment.name.toLowerCase()}.ico`
+      for (var sentiment in data.sentiment_week) {
+        this.top_sentiments.push({ name: sentiment,
+          thoughtsCount: data.sentiment_week[sentiment],
+          imagePath: `assets/icon/${sentiment.toLowerCase()}.ico` });
       }
+      this.sentiments_length = this.top_sentiments.length;
       for (let day of this.entries.week) {
         this.barChartLabels.push(this.weekdays[new Date(day.date).getDay()]);
         this.barChartData[0].data.push(day.amount);

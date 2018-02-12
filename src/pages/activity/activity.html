@@ -12,7 +12,7 @@
 <ion-content padding [@visibilityChanged]="visibility" style="opacity: 0">
   <h1 class='graph-header'>Most used sentiment(s) the past week</h1>
   <div class="emoji-sentiments card emoji-{{sentiments_length}}">
-    <img class='sentiment_img' *ngFor='let sentiment of top_sentiments' height="35px" width="32px" (click)="sentimentPopup(sentiment.name, sentiment.taggings_count)" [src]="sentiment.imagePath"/>
+    <img class='sentiment_img' *ngFor='let sentiment of top_sentiments' height="35px" width="32px" (click)="sentimentPopup(sentiment.name, sentiment.thoughtsCount)" [src]="sentiment.imagePath"/>
   </div>
   <div *ngIf="isDataAvailable">
     <h1 class='graph-header'>Your entries from the past week</h1>
