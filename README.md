@@ -11,6 +11,8 @@ There is also statistics provided, where you can see your activity on the app an
 Ionic v.3.19.1  
 Find our back end repository: https://github.com/CraftAcademy/gather-your-thoughts-backend  
 
+To use the app, download the **Ionic View** app and use the code **b24bc40b**
+
 ### Install
 To get started, go to the root folder of the project and run `npm install`. Make sure you have node.js before running
 
