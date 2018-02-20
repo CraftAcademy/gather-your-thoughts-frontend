@@ -17,7 +17,7 @@ To get started, go to the root folder of the project and run `npm install`. Make
 
 ### Technologies
 **Chart.js** for our charts and graphs  
-**Devise_token_auth** for authentication
+**Devise_token_auth** for authentication  
 **Microsoft Azure Text Analytics** for label suggestion through our back end  
 **Heroku** to host our back end server
 
